@@ -1,0 +1,27 @@
+@startuml 04_deployment
+
+node "Appareil\n utilisateur"{
+    component navigateur
+}
+
+cloud Heroku{
+    ' left to right direction
+    database Postgres
+    rectangle Gunicorn{
+        component Django
+    }
+    rectangle WhiteNoise{
+        component Static
+    }
+}
+Django -- Postgres : WSGI
+Django -- Static : WSGI
+
+cloud OpenFoodFacts{
+    component API
+}
+
+navigateur - Django : "HTTPS"
+Django - API : "HTTPS"
+
+@enduml
