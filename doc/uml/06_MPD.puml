@@ -19,10 +19,9 @@ object product{
 }
 
 object substitute{
-    [PK] id INTERGER NOT NULL
-    [FK] user_id INTERGER NOT NULL
-    [FK] product_id INTERGER NOT NULL
-    [FK] substitute_id INTERGER NOT NULL
+    [PFK] user_id INTERGER NOT NULL
+    [PFK] product_id INTERGER NOT NULL
+    [PFK] substitute_id INTERGER NOT NULL
 }
 
 user "1" -- "*" substitute

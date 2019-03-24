@@ -4,6 +4,10 @@ node "Appareil\n utilisateur"{
     component navigateur
 }
 
+node "Appareil\nDeveloppeur"{
+    component Terminal
+}
+
 cloud Heroku{
     ' left to right direction
     database Postgres
@@ -14,6 +18,7 @@ cloud Heroku{
         component Static
     }
 }
+
 Django -- Postgres : WSGI
 Django -- Static : WSGI
 
@@ -22,6 +27,7 @@ cloud OpenFoodFacts{
 }
 
 navigateur - Django : "HTTPS"
+Terminal -- Django : "SSH"
 Django - API : "HTTPS"
 
 @enduml

@@ -7,10 +7,12 @@ rectangle pure_beurre {
 }
 actor user
 actor OpenFoofFacts <<system>>
+actor Developpeur
 
 products -- user
 authentication -- user
 products - OpenFoofFacts
+products -- Developpeur
 
 
 @enduml

@@ -4,7 +4,7 @@
 
 La startup Pur Beurre souhaite faire une application en ligne à partir du précédent projet ([oc_dapython_pr5](https://github.com/Zepmanbc/oc_dapython_pr5/)).
 
-Il faut fournir une application web permettant de selectionner le substitut d'un aliment par un autre qui sera jugé plus sain.
+Il faut fournir une application web permettant de selectionner le substitut d'un aliment qui sera jugé plus sain.
 
 
 ## 1. - User stories
@@ -22,6 +22,10 @@ L'utilisateur pourra créer un compte afin de sauvegarder les combinaisons d'ali
 
 L'utilisateur doit pouvoir choisir un substitut en 1 clic.
 
+L'utilisateur fait une recherche textuelle, il sélectionne le produit qu'il consomme actuellement, une liste de substitut lui est proposé, il peut les consulter et les enregistrer en association avec le produit initial.
+
+Les associations sont sauvegardées et consultable.
+
 Une évolution est prévue de pouvoir commander un produit directement depuis le site et toucher une commission.
 
 ## 3. - Acteurs système
@@ -36,11 +40,29 @@ Une évolution est prévue de pouvoir commander un produit directement depuis le
 
 ![Cas d'utilisation Authentication](img/02_uc_authentication.png)
 
+* [A01 - Créer un compte](fiches/A01.md)
+* [A02 - Se connecter](fiches/A02.md)
+* [A03 - Se déconnecter](fiches/A03.md)
+
 ![Cas d'utilisation Products](img/02_uc_products.png)
+
+* [P01 - Faire une recherche](fiches/P01.md)
+* [P02 - Choisir un produit](fiches/P02.md)
+* [P03 - Trouver un substitut](fiches/P03.md)
+* [P04 - Enregistrer un substitut](fiches/P04.md)
+* [P05 - Afficher un produit](fiches/P05.md)
+* [P06 - Supprimer un substitut](fiches/P06.md)
+* [P07 - Consulter "Mes produits"](fiches/P07.md)
+* [P08 - Consulter les substituts enregistrés](fiches/P08.md)
+* [P09 - Récupérer les données de OFF](fiches/P09.md)
 
 ## 6 - Parcours
 
-à faire...
+![Workflow enregistrement basique](img/03_activity_01.png)
+
+![Workflow pas connecté](img/03_activity_02.png)
+
+![Workflow suppression d'un substitut](img/03_activity_03.png)
 
 ## 7 - Solution Technique
 

@@ -5,8 +5,9 @@ class Products{
     show_product()
     show_substitute()
     save_substitute()
-    show_saved()
-    delete_saved()
+    delete_substitute()
+    show_saved_product()
+    show_saved_substitute()
     load_data()
     --
     name: String
