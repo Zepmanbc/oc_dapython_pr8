@@ -1,6 +1,6 @@
 # Créez une plateforme pour amateurs de Nutella
 
-## 1 - Plannification du projet (5h30)
+## 1 - Plannification du projet (6h30)
 
 [Dépot Github](https://github.com/Zepmanbc/oc_dapython_pr8)
 
@@ -58,7 +58,7 @@ Création des dossiers static et templates
                └── wsgi.py
 
 
-## 3 - La page d’accueil des héros
+## 3 - Mise en place du Front
 
 découpage du front
 

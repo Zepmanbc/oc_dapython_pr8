@@ -1,0 +1,24 @@
+body {
+    font-family: "Scope One", sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Open Sans", sans-serif;
+}
+hr.divider{
+    border-color: #345A61;
+}
+.bg-primary{
+    background-color: #DE9440!important;
+}
+.bg-secondary {
+    background-color: #E8A75D!important;
+}
+
+#nav-brand-img{
+    height: 40px;
+}
+
+#about img{
+    height: 250px;
+}
