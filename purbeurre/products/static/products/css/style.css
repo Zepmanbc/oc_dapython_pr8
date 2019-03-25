@@ -4,6 +4,8 @@ body {
 
 h1,h2,h3,h4,h5,h6{
     font-family: "Open Sans", sans-serif;
+    margin-bottom: 24px;
+    margin-top: 12px;
 }
 hr.divider{
     border-color: #345A61;
@@ -14,6 +16,68 @@ hr.divider{
 .bg-secondary {
     background-color: #E8A75D!important;
 }
+
+.bg-product-search {
+    padding-top: 10rem;
+    background-color: #345A61;
+    /* background: linear-gradient(to bottom,rgba(92,77,66,.8) 0,rgba(92,77,66,.8) 100%),url(https://static.openfoodfacts.org/images/products/325/622/166/7790/front_fr.27.200.jpg);
+    background-repeat: no-repeat;
+    background-position-x: 35%; */
+}
+
+.bg-product-search img{
+    position: absolute;
+    opacity: 0.5;
+    left: 35%;
+    top: 30px;
+    z-index: 100;
+}
+.bg-product-search h1{
+    z-index: 200;
+}
+
+.product-thumb {
+    margin: auto;
+    max-width:350px;
+    position: relative;
+}
+
+.product-thumb img{
+    padding-top: 20px;
+    margin-top: 20px;
+    max-width:350px;
+}
+.product-thumb p{
+    max-width:200px;
+    margin: auto;
+    padding-top: 5px;
+    padding-bottom: 15px;
+}
+
+.nutriscore{
+    position: absolute;
+    right: 35px;
+    height: 50px;
+    width: 50px;
+    border-radius: 25px;
+    font-size: 2.3em;
+    font-weight: 700;
+    color: white;
+    
+}
+
+.nutriscore-A{background-color: #038141;}
+.nutriscore-A::after{content: "A";}
+.nutriscore-B{background-color: #85bb2f;}
+.nutriscore-B::after{content: "B";}
+.nutriscore-C{background-color: #fecb02;}
+.nutriscore-C::after{content: "C";}
+.nutriscore-D{background-color: #ee8100;}
+.nutriscore-D::after{content: "D";}
+.nutriscore-E{background-color: #e63e11;}
+.nutriscore-E::after{content: "E";}
+.nutriscore-Z{background-color: black;}
+.nutriscore-Z::after{content: "?";}
 
 #nav-brand-img{
     height: 40px;
