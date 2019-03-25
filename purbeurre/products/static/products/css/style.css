@@ -7,6 +7,7 @@ h1,h2,h3,h4,h5,h6{
     margin-bottom: 24px;
     margin-top: 12px;
 }
+
 hr.divider{
     border-color: #345A61;
 }
@@ -15,6 +16,14 @@ hr.divider{
 }
 .bg-secondary {
     background-color: #E8A75D!important;
+}
+
+#nav-brand-img{
+    height: 40px;
+}
+
+#about img{
+    height: 250px;
 }
 
 .bg-product-search {
@@ -54,6 +63,7 @@ hr.divider{
     padding-bottom: 15px;
 }
 
+/* Nutriscore */
 .nutriscore{
     position: absolute;
     right: 35px;
@@ -62,10 +72,8 @@ hr.divider{
     border-radius: 25px;
     font-size: 2.3em;
     font-weight: 700;
-    color: white;
-    
+    color: white;   
 }
-
 .nutriscore-A{background-color: #038141;}
 .nutriscore-A::after{content: "A";}
 .nutriscore-B{background-color: #85bb2f;}
@@ -79,10 +87,21 @@ hr.divider{
 .nutriscore-Z{background-color: black;}
 .nutriscore-Z::after{content: "?";}
 
-#nav-brand-img{
-    height: 40px;
+/* Nutrient Levels */
+ul.nutrient-levels{
+    padding-left: 0;
 }
+ul.nutrient-levels li{
+    padding: 10px 0 10px 50px;
+	list-style: none;
+	background-repeat: no-repeat;
+	background-position: left center;
+	background-size: 30px;
+}
+li.moderate {background-image: url('../img/nutricode/moderate.svg');}
+li.high {background-image: url('../img/nutricode/high.svg');}
+li.low {background-image: url('../img/nutricode/low.svg');}
 
-#about img{
-    height: 250px;
+#product-detail button{
+    margin: 40px;
 }
