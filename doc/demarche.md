@@ -60,7 +60,15 @@ Création des dossiers static et templates
 
 ## 3 - Mise en place du Front
 
-découpage du front
+Réalisation de 5 pages à partir du template pour correspondre au cahier des charges. (doc/front/*)
+
+* Accueil
+* Resultats / Mes aliments
+* Page Aliment
+* Mon Compte
+* Mention légales (génération sur le site [generer-mentions-legales.com](https://www.generer-mentions-legales.com/))
+
+Découpage avec une partie base et différents bloques.
 
 ## 4 - Authentification
 
