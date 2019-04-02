@@ -14,13 +14,11 @@ cloud Heroku{
     rectangle Gunicorn{
         component Django
     }
-    rectangle WhiteNoise{
-        component Static
-    }
+    component Static
 }
 
-Django -- Postgres : WSGI
-Django -- Static : WSGI
+Django -- Postgres
+Django -- Static
 
 cloud OpenFoodFacts{
     component API
