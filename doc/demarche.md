@@ -76,7 +76,18 @@ réalisation du package Authentication
 
 ## 5 - Products
 
-réalisation du package Products
+Mise en place d'une commande personnalisée `django-admin` pour peupler la base de donnée
+
+    └── products
+       └── management
+           └── commands
+               └── fillindb.py
+
+la commande:
+
+    python manage.py fillindb 50
+
+
 
 ## 6 - Mise en ligne
 
