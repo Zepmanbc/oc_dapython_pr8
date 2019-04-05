@@ -1,6 +1,5 @@
-from django.contrib.auth.models import AbstractUser, BaseUserManager ## A new class is imported. ##
+from django.contrib.auth.models import AbstractUser, BaseUserManager
 from django.db import models
-from django.utils.translation import ugettext_lazy as _
 
 # Create your models here.
 
@@ -40,8 +39,9 @@ class UserManager(BaseUserManager):
 
 
 class User(AbstractUser):
+    """Define email for USERNAME_FIELD."""
     username = None
-    email = models.EmailField(_('email address'), unique=True)
+    email = models.EmailField(('email address'), unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []  # removes email from REQUIRED_FIELDS
 
