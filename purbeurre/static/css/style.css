@@ -114,3 +114,9 @@ li.low {background-image: url('../img/nutricode/low.svg');}
 #product-detail button{
     margin: 40px;
 }
+
+/* Authentication */
+
+.auth-form p{
+    width: 100%;
+}

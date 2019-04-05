@@ -41,7 +41,7 @@ class UserManager(BaseUserManager):
 class User(AbstractUser):
     """Define email for USERNAME_FIELD."""
     username = None
-    email = models.EmailField(('email address'), unique=True)
+    email = models.EmailField(('addresse email'), unique=True)
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []  # removes email from REQUIRED_FIELDS
 

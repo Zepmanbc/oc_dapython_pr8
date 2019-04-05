@@ -23,5 +23,6 @@ from django.urls import include  # For django versions from 2.0 and up
 urlpatterns = [
     # url(r'^$', views.index, name="index"),
     path('', include('products.urls')),
+    path('', include('authentication.urls')),
     path('admin/', admin.site.urls),
 ]

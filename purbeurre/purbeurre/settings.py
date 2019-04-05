@@ -46,8 +46,10 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'products.apps.ProductsConfig',
-    'authentication.apps.AuthenticationConfig',
+    # 'products.apps.ProductsConfig',
+    # 'authentication.apps.AuthenticationConfig',
+    'products',
+    'authentication',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -139,6 +141,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
+LOGIN_URL = 'signin/'
 
 
 # Internationalization
