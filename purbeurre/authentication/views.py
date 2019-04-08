@@ -13,7 +13,7 @@ def LoginView(request):
         form = LoginForm(request.POST)
         if form.is_valid():
             email = form.cleaned_data.get('email')
-            raw_password = form.cleaned_data.get('password1')
+            raw_password = form.cleaned_data.get('password')
             user = authenticate(email=email, password=raw_password)
             login(request, user)
             return redirect('index')
@@ -22,11 +22,19 @@ def LoginView(request):
 
     return render(request, 'authentication/login.html', {'form': form})
 
+
+def AccountView(request):
+    if request.user.is_authenticated:
+        context = {}
+        return render(request, 'authentication/account.html', context)
+    else:
+        return redirect('authentication:login')
+
+
 @login_required
 def LogoutView(request):
-
-    context = {}
-    return render(request, 'products/search.html', context)
+    logout(request)
+    return redirect('products:index')
 
 
 def RegisterView(request):

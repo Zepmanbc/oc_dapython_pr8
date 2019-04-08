@@ -10,8 +10,6 @@ urlpatterns = [
     path('<int:product_id>/save/<int:substitute_id>',
          views.SaveView, name='save'),
     path('<int:product_id>/detail/', views.DetailView, name='detail'),
-    path('account/', views.AccountView, name='account'),
-    path('disconnect/', views.DisconnectView, name='disconnect'),
     path('myproducts/', views.MyProductsView, name='myproducts'),
     path('legal/', views.LegalView, name='legal'),
 ]

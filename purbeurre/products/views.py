@@ -26,18 +26,6 @@ def ResultView(request, product_id):
     return render(request, 'products/result.html', context)
 
 
-def AccountView(request):
-
-    context = {}
-    return render(request, 'products/account.html', context)
-
-
-def DisconnectView(request):
-
-    context = {}
-    return render(request, 'products/index.html', context)
-
-
 def LegalView(request):
 
     context = {}
