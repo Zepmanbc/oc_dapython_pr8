@@ -8,10 +8,19 @@ from .models import User
 # Create your views here.
 
 
-def LoginView(request, email, password):
+def LoginView(request):
+    if request.method == 'POST':
+        form = LoginForm(request.POST)
+        if form.is_valid():
+            email = form.cleaned_data.get('email')
+            raw_password = form.cleaned_data.get('password1')
+            user = authenticate(email=email, password=raw_password)
+            login(request, user)
+            return redirect('index')
+    else:
+        form = LoginForm()
 
-    context = {'query': query}
-    return render(request, 'products/search.html', context)
+    return render(request, 'authentication/login.html', {'form': form})
 
 @login_required
 def LogoutView(request):
@@ -35,12 +44,3 @@ def RegisterView(request):
     else:
         form = RegisterForm()
         return render(request, 'authentication/register.html', {'form': form})
-
-
-def SignInView(request, email, password):
-
-    context = {
-        'email': email,
-        'password': password,
-    }
-    return render(request, 'products/search.html', context)
