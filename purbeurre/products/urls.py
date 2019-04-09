@@ -5,7 +5,7 @@ from . import views
 app_name = 'products'
 urlpatterns = [
     path('', views.IndexView, name='index'),
-    path('search/<str:query>/', views.SearchView, name='search'),
+    path('search/', views.SearchView, name='search'),
     path('<int:product_id>/result/', views.ResultView, name='result'),
     path('<int:product_id>/save/<int:substitute_id>',
          views.SaveView, name='save'),

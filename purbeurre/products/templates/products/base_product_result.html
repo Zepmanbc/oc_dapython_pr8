@@ -5,54 +5,18 @@
         <div class="col-12 text-center">
           <h2>Vous pouvez remplacer cet aliment par : </h2>
         </div>
-        <div class="col-12 col-lg-4">
-          <div class="product-thumb">
-            <div class="nutriscore nutriscore-A text-center"></div>
-            <img src="https://static.openfoodfacts.org/images/products/325/622/166/7790/front_fr.27.200.jpg" class="rounded mx-auto d-block" alt="">
-            <p class="text-center">Des choux de Bruxelle avec beaucoup de blabla derriere</p>
-            <p class="text-center"><i class="fas fa-save fa-1x"></i> Sauvegarder</p>
+        {% for product in result %}
+          <div class="col-12 col-lg-4">
+            <div class="product-thumb">
+              <div class="nutriscore nutriscore-{{product.nutrition_grades|upper}} text-center"></div>
+                <a href="{% url 'products:result' product.id %}">
+                  <img src="{{product.image_url}}" class="rounded mx-auto d-block" alt="">
+                </a>
+              <p class="text-center">{{product|title}}</p>
+              <p class="text-center"><i class="fas fa-save fa-1x"></i> Sauvegarder</p>
+            </div>
           </div>
-        </div>
-        <div class="col-12 col-lg-4">
-          <div class="product-thumb">
-            <div class="nutriscore nutriscore-B text-center"></div>
-            <img src="https://static.openfoodfacts.org/images/products/325/622/166/7790/front_fr.27.200.jpg" class="rounded mx-auto d-block" alt="">
-            <p class="text-center">Des choux de Bruxelle avec beaucoup de blabla derriere</p>
-            <p class="text-center"><i class="fas fa-save fa-1x"></i> Sauvegarder</p>
-          </div>
-        </div>
-        <div class="col-12 col-lg-4">
-          <div class="product-thumb">
-            <div class="nutriscore nutriscore-C text-center"></div>
-            <img src="https://static.openfoodfacts.org/images/products/325/622/166/7790/front_fr.27.200.jpg" class="rounded mx-auto d-block" alt="">
-            <p class="text-center">Des choux de Bruxelle avec beaucoup de blabla derriere</p>
-            <p class="text-center"><i class="fas fa-save fa-1x"></i> Sauvegarder</p>
-          </div>
-        </div>
-        <div class="col-12 col-lg-4">
-          <div class="product-thumb">
-            <div class="nutriscore nutriscore-D text-center"></div>
-            <img src="https://static.openfoodfacts.org/images/products/325/622/166/7790/front_fr.27.200.jpg" class="rounded mx-auto d-block" alt="">
-            <p class="text-center">Des choux de Bruxelle avec beaucoup de blabla derriere</p>
-            <p class="text-center"><i class="fas fa-save fa-1x"></i> Sauvegarder</p>
-          </div>
-        </div>
-        <div class="col-12 col-lg-4">
-          <div class="product-thumb">
-            <div class="nutriscore nutriscore-E text-center"></div>
-            <img src="https://static.openfoodfacts.org/images/products/325/622/166/7790/front_fr.27.200.jpg" class="rounded mx-auto d-block" alt="">
-            <p class="text-center">Des choux de Bruxelle avec beaucoup de blabla derriere</p>
-            <p class="text-center"><i class="fas fa-save fa-1x"></i> Sauvegarder</p>
-          </div>
-        </div>
-        <div class="col-12 col-lg-4">
-          <div class="product-thumb">
-            <div class="nutriscore nutriscore-Z text-center"></div>
-            <img src="https://static.openfoodfacts.org/images/products/325/622/166/7790/front_fr.27.200.jpg" class="rounded mx-auto d-block" alt="">
-            <p class="text-center">Des choux de Bruxelle avec beaucoup de blabla derriere</p>
-            <p class="text-center"><i class="fas fa-save fa-1x"></i> Sauvegarder</p>
-          </div>
-        </div>
+        {% endfor %}
       </div>
     </div>
 </section>
