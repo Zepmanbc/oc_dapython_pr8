@@ -20,7 +20,7 @@
           </p>
         {% endfor %}
         {% if form.errors %}
-          <p style="color: red">{{ form.errors }}</p>
+          <div class="alert alert-warning">{{ form.non_field_errors }}</div>
         {% endif %}
         <button type="submit">Enregistrer</button>
       </form>
