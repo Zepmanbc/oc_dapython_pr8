@@ -13,11 +13,13 @@
           <h2 class="text-uppercase text-white font-weight-bold">Trouvez un produit de substitution pour ceux que vous consommez tous les jours.</h1>
         </div>
         <div class="col-lg-8 align-self-baseline">
-          <div class="input-group mb-3">
-            <input type="text" class="form-control" placeholder="Rechercher un produit">
-            <div class="input-group-append">
-              <button class="btn btn-outline-secondary btn-light" type="button">Chercher</button>
-            </div>
+            <form action="{% url 'products:search' %}" method="get">
+              <div class="input-group mb-3">
+                <input name="query" type="text" class="form-control" placeholder="Rechercher un produit">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary btn-light" type="submit">Chercher</button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
