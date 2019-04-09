@@ -9,9 +9,22 @@
     <div class="row auth-form py-3">
       <form method="post">
         {% csrf_token %}
-        {{ form.as_p }}
+        {% for field in form %}
+          <p>
+            {{ field.label_tag }}<br>
+            {{ field }}
+            {% if field.help_text %}
+              <small style="color: grey">{{ field.help_text }}</small>
+            {% endif %}
+            
+          </p>
+        {% endfor %}
+        {% if form.errors %}
+          <p style="color: red">{{ form.errors }}</p>
+        {% endif %}
         <button type="submit">Enregistrer</button>
       </form>
+      <p class="py-3"><a href="{% url 'authentication:register' %}">Creer un compte</a></p>
     </div>
   </div>
 </section>
