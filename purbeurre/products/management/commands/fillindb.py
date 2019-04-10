@@ -85,7 +85,7 @@ class Command(BaseCommand):
             clean_product[elem] = product['nutrient_levels'][elem]
         clean_product['nutrition_grades_tags'] = clean_product['nutrition_grades_tags'][0]
         if len(clean_product['nutrition_grades_tags']) > 1:
-            clean_product['nutrition_grades_tags'] = ''
+            clean_product['nutrition_grades_tags'] = 'z'
         return clean_product
 
     def save_in_db(self, product, categ):
