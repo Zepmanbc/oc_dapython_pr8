@@ -3,13 +3,6 @@ from django.db import models
 # Create your models here.
 
 
-class Categories(models.Model):
-    categories = models.CharField(max_length=200)
-
-    def __str__(self):
-        return self.categories
-
-
 class Product(models.Model):
     product_name = models.CharField(max_length=200)
     nutrition_grades = models.CharField(max_length=1)
@@ -23,7 +16,7 @@ class Product(models.Model):
     salt_100g = models.DecimalField(max_digits=3, decimal_places=1)
     image_url = models.URLField()
     url = models.URLField()
-    categories = models.ManyToManyField(Categories)
+    category = models.CharField(max_length=20)
 
     def __str__(self):
         return self.product_name

@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 
-from .models import Product, Categories, Substitute
+from .models import Product, Substitute
 # Create your views here.
 
 
@@ -27,8 +27,8 @@ def SearchView(request):
 def ResultView(request, product_id):
     context = {}
     result = []
-    categories_list = Product.objects.get(pk=product_id).categories.values_list()
-
+    categories_list = Product.objects.get(pk=product_id).categories.values('id')
+    toto = Product.objects.filter(nutrition_grades__gt='b')
     # recupérer tous les produits relatifs aux categories communes
     # les avoir une seule fois
     # supprimer celui qui fait référence
@@ -37,9 +37,9 @@ def ResultView(request, product_id):
     # en garder que 9 max
     
 
-    for category in categories_list:
-        result.append(Product.objects.filter(categories=category[0]).values_list())
-    result = set(result)
+    # for category in categories_list:
+    #     result.append(Product.objects.filter(categories=category[0]))
+    
 
     if result:
         context['result'] = result

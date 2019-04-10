@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from products.models import Categories, Product
+from products.models import Product
 
 import requests
 
@@ -16,7 +16,8 @@ class Command(BaseCommand):
         "pizza",
         "ravioli",
         "creme chocolat",
-        "yaourt aux fruits"
+        "yaourt aux fruits",
+        "pates a tartiner"
     ]
 
     keep_data = [
@@ -50,7 +51,7 @@ class Command(BaseCommand):
         for categ in self.categories_list:
             products_list = self.get_products(categ, product_qty)
             for product in products_list:
-                self.save_in_db(product)
+                self.save_in_db(product, categ)
         self.stdout.write(self.style.SUCCESS("Done"))
 
     def get_products(self, categ, product_qty):
@@ -87,9 +88,8 @@ class Command(BaseCommand):
             clean_product['nutrition_grades_tags'] = ''
         return clean_product
 
-    def save_in_db(self, product):
+    def save_in_db(self, product, categ):
         cln_product = self.clean_data(product)
-        categ_list = [x.strip() for x in cln_product['categories'].split(',')]
 
         p = Product(
             product_name=cln_product['product_name'],
@@ -104,8 +104,6 @@ class Command(BaseCommand):
             salt_100g=cln_product['salt_100g'],
             image_url=cln_product['image_url'],
             url=cln_product['url'],
+            category=categ,
         )
         p.save()
-        for categ in categ_list:
-            c = Categories.objects.get_or_create(categories=categ)
-            p.categories.add(c[0])
