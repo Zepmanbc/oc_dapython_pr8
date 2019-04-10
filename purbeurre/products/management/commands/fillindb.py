@@ -74,7 +74,6 @@ class Command(BaseCommand):
                 product[elem] = ''
             clean_product[elem] = product[elem]
         for elem in self.keep_data_nutriments:
-            #  if not product['nutriments'][elem] or elem not in product['nutriments']:
             if elem not in product['nutriments']:
                 product['nutriments'][elem] = 0
             clean_product[elem] = product['nutriments'][elem]
@@ -83,7 +82,8 @@ class Command(BaseCommand):
             if elem not in product['nutrient_levels']:
                 product['nutrient_levels'][elem] = ''
             clean_product[elem] = product['nutrient_levels'][elem]
-        clean_product['nutrition_grades_tags'] = clean_product['nutrition_grades_tags'][0]
+        clean_product['nutrition_grades_tags'] = \
+            clean_product['nutrition_grades_tags'][0]
         if len(clean_product['nutrition_grades_tags']) > 1:
             clean_product['nutrition_grades_tags'] = 'z'
         return clean_product

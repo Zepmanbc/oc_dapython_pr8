@@ -32,8 +32,10 @@ class User(models.Model):
 
 
 class Substitute(models.Model):
-    product_id = models.ForeignKey(Product, related_name='product', on_delete=models.CASCADE)
-    substitute_id = models.ForeignKey(Product, related_name='substitute', on_delete=models.CASCADE)
+    product_id = models.ForeignKey(
+        Product, related_name='product', on_delete=models.CASCADE)
+    substitute_id = models.ForeignKey(
+        Product, related_name='substitute', on_delete=models.CASCADE)
     user_id = models.ForeignKey(User, on_delete=models.CASCADE)
 
     class Meta:

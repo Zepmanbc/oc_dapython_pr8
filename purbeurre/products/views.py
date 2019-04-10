@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
-from django.db.models import Q
 
 from .models import Product, Substitute
 # Create your views here.
@@ -21,6 +20,7 @@ def SearchView(request):
         if result:
             context['result'] = result
             context['title'] = query
+            context['target'] = 'products:result'
         else:
             context['result'] = None
     return render(request, 'products/search.html', context)
@@ -41,6 +41,7 @@ def ResultView(request, product_id):
         context['result'] = result
         context['query'] = curr_product.product_name
         context['curr_product'] = curr_product
+        context['target'] = 'products:detail'
     else:
         context['result'] = None
         context['query'] = 'Unknown'
@@ -49,6 +50,10 @@ def ResultView(request, product_id):
 
 def DetailView(request, product_id):
     context = {}
+    curr_product = Product.objects.get(pk=product_id)
+    context['query'] = curr_product.product_name
+    context['curr_product'] = curr_product
+
     return render(request, 'products/detail.html', context)
 
 

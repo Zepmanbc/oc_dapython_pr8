@@ -9,7 +9,7 @@
           <div class="col-12 col-lg-4">
             <div class="product-thumb">
               <div class="nutriscore nutriscore-{{product.nutrition_grades|upper}} text-center"></div>
-                <a href="{% url 'products:result' product.id %}">
+                <a href="{% url target product.id %}">
                   <img src="{{product.image_url}}" class="rounded mx-auto d-block" alt="">
                 </a>
               <p class="text-center">{{product|title}}</p>
