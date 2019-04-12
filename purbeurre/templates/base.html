@@ -55,14 +55,14 @@
             </form>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'authentication:account' %}"><i class="fas fa-user fa-2x"></i></a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'products:myproducts' %}"><i class="fas fa-carrot fa-2x"></i></a>
+            <a class="nav-link js-scroll-trigger" href="{% url 'authentication:account' %}" alt="Utilisateur"><i class="fas fa-user fa-2x"></i></a>
           </li>
           {% if user.is_active %}
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'authentication:logout' %}"><i class="fas fa-sign-out-alt fa-2x"></i></a>
+            <a class="nav-link js-scroll-trigger" href="{% url 'products:myproducts' %}" alt="Mes produits"><i class="fas fa-carrot fa-2x"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'authentication:logout' %}" alt="Déconnexion"><i class="fas fa-sign-out-alt fa-2x"></i></a>
           </li>
           {% endif %}
         </ul>

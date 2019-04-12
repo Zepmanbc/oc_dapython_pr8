@@ -6,6 +6,26 @@
 
 {% include 'base_title_section.html' %}
 
-{% include 'products/base_product_result.html' %}
+  <!-- Product Result Section -->
+  <section id="product-result">
+    <div class="container">
+      <div class="row align-items-center justify-content-center">
+        <div class="col-12 text-center">
+          <h2>Choisissez votre produit actuel : </h2>
+        </div>
+        {% for product in result %}
+          <div class="col-12 col-lg-4">
+            <div class="product-thumb">
+              <div class="nutriscore nutriscore-{{product.nutrition_grades|upper}} text-center"></div>
+                <a href="{% url target product.id %}">
+                  <img src="{{product.image_url}}" class="rounded mx-auto d-block" alt="">
+                </a>
+              <p class="text-center">{{product|title}}</p>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+</section>
 
 {% endblock content %}
