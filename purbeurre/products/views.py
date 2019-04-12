@@ -91,5 +91,18 @@ def SaveView(request):
 @login_required
 def MyProductsView(request):
     context = {}
+    user_obj = User.objects.get(pk=request.user.id)
+    substitute_list = Substitute.objects.filter(user_id=user_obj.id).order_by('-id')
+    context['substitute_list'] = substitute_list
     context['title'] = 'mes produits'
     return render(request, 'products/myproducts.html', context)
+
+
+@login_required
+def DeleteView(request):
+    if request.method == 'POST':
+        substitute_id = request.POST['substitute_id']
+        subst_obj = Substitute.objects.get(pk=substitute_id)
+        subst_obj.delete()
+        return redirect('products:myproducts')
+    return redirect('products:index')

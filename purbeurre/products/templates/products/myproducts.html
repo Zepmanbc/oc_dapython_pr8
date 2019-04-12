@@ -9,10 +9,37 @@
   <!-- My Product Result Section -->
   <section id="product-result">
     <div class="container">
+        {% for sl in substitute_list %}
         <div class="row align-items-center justify-content-center">
-
-
+          <div class="col-4">
+            <div class="product-thumb">
+              <div class="nutriscore nutriscore-{{sl.product_id.nutrition_grades|upper}} text-center"></div>
+                <img src="{{sl.product_id.image_url}}" class="rounded mx-auto d-block" alt="">
+              <p class="text-center">{{sl.product_id|title}}</p>
+            </div>
+          </div>
+          <div class="col-1">
+            <p><i class="fas fa-arrow-right fa-4x"></i></p>
+          </div>
+          <div class="col-4">
+            <div class="product-thumb">
+              <div class="nutriscore nutriscore-{{sl.substitute_id.nutrition_grades|upper}} text-center"></div>
+                <img src="{{sl.substitute_id.image_url}}" class="rounded mx-auto d-block" alt="">
+              <p class="text-center">{{sl.substitute_id|title}}</p>
+            </div>
+          </div>
+          <div class="col-1">
+            <p></p>
+              <form action="{% url 'products:delete' %}" method="POST">
+                {% csrf_token %}
+                <input type="hidden" name="substitute_id" value="{{ sl.id }}">
+                <button type="submit" class="btn btn-link"><i class="fas fa-trash-alt fa-4x"></i></button>
+              </form>
+            </p>
+          </div>
         </div>
+        
+        {% endfor %}
     </div>
     </section>
 

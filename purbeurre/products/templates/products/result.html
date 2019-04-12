@@ -18,21 +18,21 @@
         </div>
         {% for substitute in result %}
           <div class="col-12 col-lg-4">
-            <div class="product-thumb">
+            <div class="product-thumb border border-dark rounded">
               <div class="nutriscore nutriscore-{{substitute.nutrition_grades|upper}} text-center"></div>
                 <a href="{% url target substitute.id %}">
                   <img src="{{substitute.image_url}}" class="rounded mx-auto d-block" alt="">
                 </a>
-              <p class="text-center">{{product|title}}</p>
-              <p class="text-center">
+              <div class="text-center py-2">{{product|title}}</div>
+              <div class="text-center">
                 <form action="{% url 'products:save' %}" method="POST">
                   {% csrf_token %}
                   <input type="hidden" name="next" value="{{ request.path }}">
                   <input type="hidden" name="product_id" value="{{ product.id }}">
                   <input type="hidden" name="substitute_id" value="{{ substitute.id }}">
-                  <button type="submit"><i class="fas fa-save fa-1x"></i> Sauvegarder</button>
+                  <button type="submit" class="btn btn-link"><i class="fas fa-save fa-1x"></i> Sauvegarder</button>
                 </form>
-              </p>
+              </div>
             </div>
           </div>
         {% endfor %}
