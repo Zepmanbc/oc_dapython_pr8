@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -22,13 +23,13 @@ class Product(models.Model):
         return self.product_name
 
 
-class User(models.Model):
-    email = models.EmailField()
-    name = models.CharField(max_length=200)
-    password = models.CharField(max_length=200)
+# class User(models.Model):
+#     email = models.EmailField()
+#     name = models.CharField(max_length=200)
+#     password = models.CharField(max_length=200)
 
-    def __str__(self):
-        return self.email
+#     def __str__(self):
+#         return self.email
 
 
 class Substitute(models.Model):
