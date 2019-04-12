@@ -1,5 +1,6 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 from .models import Product, Substitute
 # Create your views here.
@@ -28,19 +29,21 @@ def SearchView(request):
 
 def ResultView(request, product_id):
     context = {}
+    if 'allreadysaved' in request.GET:
+        context['message'] = "Déjà enregistré"
     result = []
-    curr_product = Product.objects.get(pk=product_id)
+    product = Product.objects.get(pk=product_id)
 
     result = Product.objects\
-        .filter(category=curr_product.category)\
-        .filter(nutrition_grades__lte=curr_product.nutrition_grades)\
+        .filter(category=product.category)\
+        .filter(nutrition_grades__lte=product.nutrition_grades)\
         .exclude(id=product_id)\
         .order_by('nutrition_grades')[:9]
 
     if result:
         context['result'] = result
-        context['query'] = curr_product.product_name
-        context['curr_product'] = curr_product
+        context['query'] = product.product_name
+        context['product'] = product
         context['target'] = 'products:detail'
     else:
         context['result'] = None
@@ -50,23 +53,39 @@ def ResultView(request, product_id):
 
 def DetailView(request, product_id):
     context = {}
-    curr_product = Product.objects.get(pk=product_id)
-    context['query'] = curr_product.product_name
-    context['curr_product'] = curr_product
+    product = Product.objects.get(pk=product_id)
+    context['query'] = product.product_name
+    context['product'] = product
 
     return render(request, 'products/detail.html', context)
 
 
 def LegalView(request):
-
     context = {}
     return render(request, 'products/legal.html', context)
 
 
-def SaveView(request, product_id, substitude_id):
-
-    context = {}
-    return render(request, 'products/index.html', context)
+@login_required
+def SaveView(request):
+    if request.method == 'POST':
+        product_id = request.POST['product_id']
+        substitute_id = request.POST['substitute_id']
+        next_url = request.POST['next']
+        product_obj = Product.objects.get(pk=product_id)
+        substitute_obj = Product.objects.get(pk=substitute_id)
+        user_obj = User.objects.get(pk=request.user.id)
+        # test if all obj are sets
+        if product_obj and substitute_obj and user_obj:
+            obj, created = Substitute.objects.get_or_create(
+                user_id=user_obj,
+                product_id=product_obj,
+                substitute_id=substitute_obj
+                )
+            if created:
+                return redirect('products:myproducts')
+            else:
+                return redirect(next_url+"?allreadysaved")
+    return redirect('products:index')
 
 
 @login_required
