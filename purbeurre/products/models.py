@@ -1,5 +1,6 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import User
+from purbeurre import settings
 
 # Create your models here.
 
@@ -37,7 +38,7 @@ class Substitute(models.Model):
         Product, related_name='product', on_delete=models.CASCADE)
     substitute_id = models.ForeignKey(
         Product, related_name='substitute', on_delete=models.CASCADE)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = (('product_id', 'substitute_id', 'user_id'),)

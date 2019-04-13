@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, reverse
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.models import User
+from authentication.models import User
 
 from .models import Product, Substitute
 # Create your views here.
