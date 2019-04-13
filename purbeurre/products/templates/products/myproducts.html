@@ -14,7 +14,9 @@
           <div class="col-4">
             <div class="product-thumb">
               <div class="nutriscore nutriscore-{{sl.product_id.nutrition_grades|upper}} text-center"></div>
+              <a href="{% url 'products:detail' sl.product_id.id %}">
                 <img src="{{sl.product_id.image_url}}" class="rounded mx-auto d-block" alt="">
+              </a>
               <p class="text-center">{{sl.product_id|title}}</p>
             </div>
           </div>
@@ -24,7 +26,9 @@
           <div class="col-4">
             <div class="product-thumb">
               <div class="nutriscore nutriscore-{{sl.substitute_id.nutrition_grades|upper}} text-center"></div>
+              <a href="{% url 'products:detail' sl.substitute_id.id %}">
                 <img src="{{sl.substitute_id.image_url}}" class="rounded mx-auto d-block" alt="">
+              </a>
               <p class="text-center">{{sl.substitute_id|title}}</p>
             </div>
           </div>

@@ -18,12 +18,12 @@
         </div>
         {% for substitute in result %}
           <div class="col-12 col-lg-4">
-            <div class="product-thumb border border-dark rounded">
+            <div class="product-thumb">
               <div class="nutriscore nutriscore-{{substitute.nutrition_grades|upper}} text-center"></div>
                 <a href="{% url target substitute.id %}">
                   <img src="{{substitute.image_url}}" class="rounded mx-auto d-block" alt="">
                 </a>
-              <div class="text-center py-2">{{product|title}}</div>
+              <div class="text-center py-2">{{substitute|title}}</div>
               <div class="text-center">
                 <form action="{% url 'products:save' %}" method="POST">
                   {% csrf_token %}
