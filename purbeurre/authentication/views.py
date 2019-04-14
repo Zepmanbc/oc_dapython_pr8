@@ -1,30 +1,27 @@
-from django.shortcuts import render, redirect
+from django.views.generic import TemplateView, FormView
 from django.contrib.auth import login, authenticate, logout
+
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
-from django.views import generic
 
 from .forms import RegisterForm
 
 # Create your views here.
 
 
-def AccountView(request):
-    if request.user.is_authenticated:
+class AccountView(LoginRequiredMixin, TemplateView):
+    template_name = 'authentication/account.html'
+
+    def get(self, request, *args, **kwargs):
         fullname = " ".join([request.user.first_name, request.user.last_name])
         context = {'fullname': fullname}
-        return render(request, 'authentication/account.html', context)
-    else:
-        return redirect('authentication:login')
+        return render(request, self.template_name, context)
 
 
-@login_required
-def LogoutView(request):
-    logout(request)
-    return redirect('products:index')
-
-
-class RegisterView(generic.FormView):
+class RegisterView(FormView):
     form_class = RegisterForm
     success_url = reverse_lazy('authentication:account')
     template_name = 'authentication/register.html'
@@ -37,3 +34,9 @@ class RegisterView(generic.FormView):
         if user:
             login(self.request, user)
         return super().form_valid(form)
+
+
+@login_required
+def LogoutView(request):
+    logout(request)
+    return redirect('products:index')
