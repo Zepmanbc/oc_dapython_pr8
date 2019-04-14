@@ -243,17 +243,26 @@ Affichage d'un message si il n'y a pas de retour à la requête.
 
 ---
 
+### delete : supprimer une paire de produit enregistré
 
+J'ai utilisé une vue générique `DeleteView`
+
+J'ai appelé la vue avec une requete `GET` afin de pouvoir afficher une page de confirmation.
+
+le nom du template par défaut : *products/substitute_confirm_delete.html*
+
+---
 
 ### Compétances aquises sur ce module.
 
 * Utilisation de vue générique directement dans `urlpatterns` (*index*)
-* Utilisation de vue générique (`ListView`, `DetailView`)
+* Utilisation de vue générique (`ListView`, `DetailView`, `DeleteView`)
 * Définition d'une requete spécifique dans une vue générique (`get_queryset`)
 * Ajout d'élement à `context` dans une vue générique (`get_context_data`)
 * Requête "complexe" (result)
 * Utilisation de l'utilisateur en session pour faire une requête (*myproducts*)
 * Récupération de données sur une table `ManyToMany`
+* Utilisation du nom du template générique (*delete*)
 
 
 

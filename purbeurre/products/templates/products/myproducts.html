@@ -39,9 +39,8 @@
           </div>
           <div class="col-1">
             <p></p>
-              <form action="{% url 'products:delete' %}" method="POST">
+              <form action="{% url 'products:delete' sl.id %}" method="GET">
                 {% csrf_token %}
-                <input type="hidden" name="substitute_id" value="{{ sl.id }}">
                 <button type="submit" class="btn btn-link"><i class="fas fa-trash-alt fa-4x"></i></button>
               </form>
             </p>

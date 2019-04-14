@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from authentication.models import User
@@ -66,6 +67,16 @@ class MyProductsView(LoginRequiredMixin, ListView):
         return context
 
 
+class DeleteSubstituteView(LoginRequiredMixin, DeleteView):
+    model = Substitute
+    success_url = reverse_lazy('products:myproducts')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Mes produits'
+        return context
+
+
 @login_required
 def SaveView(request):
     if request.method == 'POST':
@@ -90,13 +101,3 @@ def SaveView(request):
 
 
 
-
-
-@login_required
-def DeleteSubstituteView(request):
-    if request.method == 'POST':
-        substitute_id = request.POST['substitute_id']
-        subst_obj = Substitute.objects.get(pk=substitute_id)
-        subst_obj.delete()
-        return redirect('products:myproducts')
-    return redirect('products:index')
