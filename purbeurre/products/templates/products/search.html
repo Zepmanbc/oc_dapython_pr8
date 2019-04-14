@@ -13,7 +13,10 @@
         <div class="col-12 text-center">
           <h2>Choisissez votre produit actuel : </h2>
         </div>
-        {% for product in result %}
+        {% if not object_list %}
+          <div class="alert alert-warning">Il n'y a pas de produits correspondant à {{title|title}}</div>
+        {% endif %}
+        {% for product in object_list %}
           <div class="col-12 col-lg-4">
             <div class="product-thumb">
               <div class="nutriscore nutriscore-{{product.nutrition_grades|upper}} text-center"></div>

@@ -1,30 +1,23 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from authentication.models import User
+from django.views.generic import ListView
 
 from .models import Product, Substitute
 # Create your views here.
 
 
-def IndexView(request):
+class SearchView(ListView):
+    template_name = 'products/search.html'
 
-    context = {}
-    return render(request, 'products/index.html', context)
+    def get_queryset(self):
+        return Product.objects.filter(product_name__icontains=self.request.GET['query'])
 
-
-def SearchView(request):
-    context = {}
-    if request.method == 'GET':
-        query = request.GET['query']
-        context['query'] = query
-        result = Product.objects.filter(product_name__icontains=query)
-        if result:
-            context['result'] = result
-            context['title'] = query
-            context['target'] = 'products:result'
-        else:
-            context['result'] = None
-    return render(request, 'products/search.html', context)
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = self.request.GET['query']
+        context['target'] = 'products:result'
+        return context
 
 
 def ResultView(request, product_id):

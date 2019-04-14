@@ -132,6 +132,38 @@ la commande:
     python manage.py fillindb 50
 
 
+### index : la page d'accueil du site
+
+J'ai utilisé la vue générique `TemplateView` directement dans `urlpatterns` en définissant le *template* cible.
+
+    urlpatterns = [
+        path('', TemplateView.as_view(template_name='products/index.html'), name='index'),
+    ]
+
+### search : recherche d'un produit dans la base.
+
+J'ai utilisé une vue générique ListView.
+
+* je récupère l'élément à rechercher *query* qui est une requete `GET`
+* je définie la requete dans la base de donnée avec la méthode `get_queryset`
+* je rajoute des éléments à `context` pour mon template avec la methode `get_context_data`
+
+[products/search.html](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/purbeurre/products/templates/products/search.html)
+
+Je fais une boucle sur `object_list` pour afficher les produits.
+
+Il y a un test sur `object_list` pour afficher un message si la requete ne renvoie rien.
+
+
+
+### Compétances aquises sur ce module.
+
+* Utilisation de vue générique directement dans `urlpatterns` (*index*)
+* Utilisation de vue générique (`ListView`)
+* Définition d'une requete spécifique dans une vue générique (`get_queryset`)
+* Ajout d'élement à `context` dans une vue générique (`get_context_data`)
+
+
 
 ## 6 - Mise en ligne
 
