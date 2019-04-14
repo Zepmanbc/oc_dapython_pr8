@@ -11,7 +11,7 @@ urlpatterns = [
          name='legal'),
 
     path('search/', views.SearchView.as_view(), name='search'),
-    path('<int:product_id>/result/', views.ResultView, name='result'),
+    path('<int:product_id>/result/', views.ResultView.as_view(), name='result'),
     path('save/', views.SaveView, name='save'),
     path('delete/', views.DeleteView, name='delete'),
     path('<int:product_id>/detail/', views.DetailView, name='detail'),

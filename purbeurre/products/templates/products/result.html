@@ -16,7 +16,7 @@
             <div class="alert alert-warning">{{message}}</div>
           {% endif %}
         </div>
-        {% for substitute in result %}
+        {% for substitute in object_list %}
           <div class="col-12 col-lg-4">
             <div class="product-thumb">
               <div class="nutriscore nutriscore-{{substitute.nutrition_grades|upper}} text-center"></div>

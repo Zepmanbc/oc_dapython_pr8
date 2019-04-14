@@ -20,28 +20,26 @@ class SearchView(ListView):
         return context
 
 
-def ResultView(request, product_id):
-    context = {}
-    if 'allreadysaved' in request.GET:
-        context['message'] = "Déjà enregistré"
-    result = []
-    product = Product.objects.get(pk=product_id)
+class ResultView(ListView):
+    template_name = 'products/result.html'
 
-    result = Product.objects\
-        .filter(category=product.category)\
-        .filter(nutrition_grades__lte=product.nutrition_grades)\
-        .exclude(id=product_id)\
-        .order_by('nutrition_grades')[:9]
+    def get_queryset(self):
+        self.product = Product.objects.get(pk=self.kwargs['product_id'])
+        return Product.objects\
+            .filter(category=self.product.category)\
+            .filter(nutrition_grades__lte=self.product.nutrition_grades)\
+            .exclude(id=self.kwargs['product_id'])\
+            .order_by('nutrition_grades')[:9]
 
-    if result:
-        context['result'] = result
-        context['query'] = product.product_name
-        context['product'] = product
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        if 'allreadysaved' in self.request.GET:
+            context['message'] = 'Déjà enregistré'
+        context['query'] = self.product.product_name
+        context['product'] = self.product
+        context['title'] = self.product
         context['target'] = 'products:detail'
-    else:
-        context['result'] = None
-        context['query'] = 'Unknown'
-    return render(request, 'products/result.html', context)
+        return context
 
 
 def DetailView(request, product_id):

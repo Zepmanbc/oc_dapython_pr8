@@ -57,6 +57,7 @@ Création des dossiers static et templates
                ├── urls.py
                └── wsgi.py
 
+---
 
 ## 3 - Mise en place du Front
 
@@ -70,6 +71,8 @@ Réalisation de 5 pages à partir du template pour correspondre au cahier des ch
 
 Découpage avec une partie base et différents blocs.
 
+---
+
 ## 4 - Authentification
 
 Ce module permet d'adapter le module *User* intégré à Django pour l'utiliser avec l'adresse email à la place du *username*
@@ -78,6 +81,8 @@ Ce module permet d'adapter le module *User* intégré à Django pour l'utiliser 
 
 Surcharge du model *User* afin de l'utiliser avec l'adresse email. Il a fallut créer un *Manager* pour ce changement: `MyUserManager`
 
+---
+
 ### login : permet à l'utilisateur de se connecter
 
     urlpatterns = [
@@ -85,6 +90,8 @@ Surcharge du model *User* afin de l'utiliser avec l'adresse email. Il a fallut c
     ]
 
 J'ai utilisé la vue générique `LoginView` qui appelle le template `registration/login.html` par défaut. 
+
+---
 
 ### logout : déconnecte l'utilisateur.
 
@@ -97,17 +104,23 @@ J'ai utilisé le raccourcis `redirect`.
         logout(request)
         return redirect('products:index')
 
+---
+
 ### register :  création d'un utilisateur.
 
 J'ai utilisé la vue générique `FormView` et le formulaire générique `UserCreationForm` qu'il a fallut adapter pour prendre en compte l'*email* à la place de *username*.
 
 Utilisation de la méthode `form_valid` pour enregistrer le formulaire
 
+---
+
 ### account : affichage de la page d'information sur l'utilisateur.
 
 J'ai utilisé le Mixin `LoginRequiredMixin` pour vérifier que l'utilisateur est bien connecté.
 
 Utilisation de la méthode `get` pour afficher la page et récupérer les informations sur l'utilisateur (en session dans `request`).
+
+---
 
 ### Compétances aquises sur ce module.
 
@@ -117,6 +130,8 @@ Utilisation de la méthode `get` pour afficher la page et récupérer les inform
 * Utilisation de la vérification d'authentification de 2 manières (décorateur pour les "vues fonctions" et Mixin pour les "vues class")
 * Utilisation de raccourcis (*render*, *redirect*)
 * Utilisation de CBV (*AccountView*, *RegisterView*)
+
+---
 
 ## 5 - Products
 
@@ -131,6 +146,7 @@ la commande:
 
     python manage.py fillindb 50
 
+---
 
 ### index : la page d'accueil du site
 
@@ -140,9 +156,11 @@ J'ai utilisé la vue générique `TemplateView` directement dans `urlpatterns` e
         path('', TemplateView.as_view(template_name='products/index.html'), name='index'),
     ]
 
+---
+
 ### search : recherche d'un produit dans la base.
 
-J'ai utilisé une vue générique ListView.
+J'ai utilisé une vue générique `ListView`.
 
 * je récupère l'élément à rechercher *query* qui est une requete `GET`
 * je définie la requete dans la base de donnée avec la méthode `get_queryset`
@@ -154,6 +172,41 @@ Je fais une boucle sur `object_list` pour afficher les produits.
 
 Il y a un test sur `object_list` pour afficher un message si la requete ne renvoie rien.
 
+---
+
+### result : recherche de produits de substitution dans la base.
+
+J'ai utilisé une vue générique `ListView`.
+
+Requête sur la liste de produit:
+
+    Product.objects\
+        .filter(category=self.product.category)\
+        .filter(nutrition_grades__lte=self.product.nutrition_grades)\
+        .exclude(id=self.kwargs['product_id'])\
+        .order_by('nutrition_grades')[:9]
+
+1. filtre sur la même catégorie que le produit d'origine
+1. filtre sur un *nutrition_grades* supérieur ou égal
+1. exclusion du produit d'origine
+1. classement par *nutrition_grades* (ordre croissant) et limitation aux 9 premiers produits
+
+Récupération de la variable dans l'url
+
+url.py
+
+    path('<int:product_id>/result/', views.ResultView.as_view(), name='result'),
+
+views.py
+
+    self.product = Product.objects.get(pk=self.kwargs['product_id'])
+
+Affichage d'un message si le produit à déjà été enregistré
+
+1. récupération de *allreadysaved* dans `self.request.GET`
+1. ajout dans `context`
+1. test dans [product/result.html](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/purbeurre/products/templates/products/result.html) pour afficher le message
+
 
 
 ### Compétances aquises sur ce module.
@@ -162,6 +215,7 @@ Il y a un test sur `object_list` pour afficher un message si la requete ne renvo
 * Utilisation de vue générique (`ListView`)
 * Définition d'une requete spécifique dans une vue générique (`get_queryset`)
 * Ajout d'élement à `context` dans une vue générique (`get_context_data`)
+* Requête "complexe" (result)
 
 
 
