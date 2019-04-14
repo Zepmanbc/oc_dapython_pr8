@@ -53,11 +53,6 @@ def DetailView(request, product_id):
     return render(request, 'products/detail.html', context)
 
 
-def LegalView(request):
-    context = {}
-    return render(request, 'products/legal.html', context)
-
-
 @login_required
 def SaveView(request):
     if request.method == 'POST':
