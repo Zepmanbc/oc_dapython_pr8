@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from authentication.models import User
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 
 from .models import Product, Substitute
 # Create your views here.
@@ -42,14 +42,14 @@ class ResultView(ListView):
         return context
 
 
-def DetailView(request, product_id):
-    context = {}
-    product = Product.objects.get(pk=product_id)
-    context['query'] = product.product_name
-    context['product'] = product
+class DetailProductView(DetailView):
+    template_name = 'products/detail.html'
+    model = Product
 
-    return render(request, 'products/detail.html', context)
-
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['query'] = kwargs['object'].product_name
+        return context
 
 @login_required
 def SaveView(request):

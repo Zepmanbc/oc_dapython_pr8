@@ -207,12 +207,25 @@ Affichage d'un message si le produit à déjà été enregistré
 1. ajout dans `context`
 1. test dans [product/result.html](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/purbeurre/products/templates/products/result.html) pour afficher le message
 
+---
+
+### detail : affiche les détail d'un produit.
+
+J'ai utilisé une vue générique `DetailView`.
+
+la requete se fait sur la clé primaire qui arrive dans l'url : `<int:pk>`
+    
+    rlpatterns = [
+        path('<int:pk>/detail/', views.DetailProductView.as_view(), name='detail'),
+    ]
+
+je récupère le nom du produit dans `kwargs['object']`
 
 
 ### Compétances aquises sur ce module.
 
 * Utilisation de vue générique directement dans `urlpatterns` (*index*)
-* Utilisation de vue générique (`ListView`)
+* Utilisation de vue générique (`ListView`, `DetailView`)
 * Définition d'une requete spécifique dans une vue générique (`get_queryset`)
 * Ajout d'élement à `context` dans une vue générique (`get_context_data`)
 * Requête "complexe" (result)
