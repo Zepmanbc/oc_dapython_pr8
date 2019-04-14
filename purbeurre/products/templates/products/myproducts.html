@@ -9,7 +9,12 @@
   <!-- My Product Result Section -->
   <section id="product-result">
     <div class="container">
-        {% for sl in substitute_list %}
+        {% if not object_list %}
+        <div class="row align-items-center justify-content-center"></div>
+          <div class="alert alert-warning">Il n'y a pas de produits enregistrés</div>
+        </div>
+        {% endif %}
+        {% for sl in object_list %}
         <div class="row align-items-center justify-content-center">
           <div class="col-4">
             <div class="product-thumb">

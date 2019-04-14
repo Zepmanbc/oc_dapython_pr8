@@ -221,6 +221,29 @@ la requete se fait sur la clé primaire qui arrive dans l'url : `<int:pk>`
 
 je récupère le nom du produit dans `kwargs['object']`
 
+---
+
+### myproducts : affiche les pairs de produits enregistrés.
+
+J'ai utilisé une vue générique `ListView`.
+
+il y a une requête sur la table `Substitute` filtré sur l'id de l'utilisateur
+
+    def get_queryset(self):
+        return Substitute.objects.filter(user_id=self.request.user.id).order_by('-id')
+
+Les données sont ensuite récupérées dans la page [products/myproducts.html](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/purbeurre/products/templates/products/myproducts.html)
+
+* object_list[0].product_id : donne accés à la table Product pour le produit d'origine
+* object_list[0].substitute_id : donne accés à la table Product pour le produit de substitution
+
+Utilisation de `LoginRequiredMixin` pour protéger la page
+
+Affichage d'un message si il n'y a pas de retour à la requête.
+
+---
+
+
 
 ### Compétances aquises sur ce module.
 
@@ -229,6 +252,8 @@ je récupère le nom du produit dans `kwargs['object']`
 * Définition d'une requete spécifique dans une vue générique (`get_queryset`)
 * Ajout d'élement à `context` dans une vue générique (`get_context_data`)
 * Requête "complexe" (result)
+* Utilisation de l'utilisateur en session pour faire une requête (*myproducts*)
+* Récupération de données sur une table `ManyToMany`
 
 
 

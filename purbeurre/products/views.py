@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
 from authentication.models import User
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 
 from .models import Product, Substitute
 # Create your views here.
@@ -51,6 +52,20 @@ class DetailProductView(DetailView):
         context['query'] = kwargs['object'].product_name
         return context
 
+
+class MyProductsView(LoginRequiredMixin, ListView):
+    template_name = 'products/myproducts.html'
+
+    def get_queryset(self):
+        return Substitute.objects.filter(user_id=self.request.user.id).order_by('-id')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['title'] = 'Mes produits'
+        context['target'] = 'products:result'
+        return context
+
+
 @login_required
 def SaveView(request):
     if request.method == 'POST':
@@ -74,18 +89,11 @@ def SaveView(request):
     return redirect('products:index')
 
 
-@login_required
-def MyProductsView(request):
-    context = {}
-    user_obj = User.objects.get(pk=request.user.id)
-    substitute_list = Substitute.objects.filter(user_id=user_obj.id).order_by('-id')
-    context['substitute_list'] = substitute_list
-    context['title'] = 'mes produits'
-    return render(request, 'products/myproducts.html', context)
+
 
 
 @login_required
-def DeleteView(request):
+def DeleteSubstituteView(request):
     if request.method == 'POST':
         substitute_id = request.POST['substitute_id']
         subst_obj = Substitute.objects.get(pk=substitute_id)
