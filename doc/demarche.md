@@ -68,11 +68,55 @@ Réalisation de 5 pages à partir du template pour correspondre au cahier des ch
 * Mon Compte
 * Mention légales (génération sur le site [generer-mentions-legales.com](https://www.generer-mentions-legales.com/))
 
-Découpage avec une partie base et différents bloques.
+Découpage avec une partie base et différents blocs.
 
 ## 4 - Authentification
 
-réalisation du package Authentication
+Ce module permet d'adapter le module *User* intégré à Django pour l'utiliser avec l'adresse email à la place du *username*
+
+[purbeurre/authentication/models.py](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/purbeurre/authentication/models.py)
+
+Surcharge du model *User* afin de l'utiliser avec l'adresse email. Il a fallut créer un *Manager* pour ce changement: `MyUserManager`
+
+### login : permet à l'utilisateur de se connecter
+
+    urlpatterns = [
+        path('login/', auth_views.LoginView.as_view(), name='login'),
+    ]
+
+J'ai utilisé la vue générique `LoginView` qui appelle le template `registration/login.html` par défaut. 
+
+### logout : déconnecte l'utilisateur.
+
+J'ai utilisé le décorateur `@login_required` qui permet de renvoyer vers l'adresse définie dans `settings.LOGIN_URL` si l'utilisateur n'est pas authentifié.
+
+J'ai utilisé le raccourcis `redirect`.
+
+    @login_required
+    def LogoutView(request):
+        logout(request)
+        return redirect('products:index')
+
+### register :  création d'un utilisateur.
+
+J'ai utilisé la vue générique `FormView` et le formulaire générique `UserCreationForm` qu'il a fallut adapter pour prendre en compte l'*email* à la place de *username*.
+
+Utilisation de la méthode `form_valid` pour enregistrer le formulaire
+
+### account : affichage de la page d'information sur l'utilisateur.
+
+J'ai utilisé le Mixin `LoginRequiredMixin` pour vérifier que l'utilisateur est bien connecté.
+
+Utilisation de la méthode `get` pour afficher la page et récupérer les informations sur l'utilisateur (en session dans `request`).
+
+### Compétances aquises sur ce module.
+
+* Surcharge de *model* de base de Django (*User*)
+* Utilisation de vues génériques (*LoginView*, *FormView*)
+* Utilisation de formulaire générique et adaptation (*UserCreationForm*)
+* Utilisation de la vérification d'authentification de 2 manières (décorateur pour les "vues fonctions" et Mixin pour les "vues class")
+* Utilisation de raccourcis (*render*, *redirect*)
+* Utilisation de CBV (*AccountView*, *RegisterView*)
 
 ## 5 - Products
 
