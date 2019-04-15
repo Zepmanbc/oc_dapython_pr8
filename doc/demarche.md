@@ -187,6 +187,8 @@ Je fais une boucle sur `object_list` pour afficher les produits.
 
 Il y a un test sur `object_list` pour afficher un message si la requete ne renvoie rien.
 
+Mise en place de la pagination pour afficher des pages de 9 produits.
+
 ---
 
 ### result : recherche de produits de substitution dans la base.
@@ -256,6 +258,8 @@ Utilisation de `LoginRequiredMixin` pour protéger la page
 
 Affichage d'un message si il n'y a pas de retour à la requête.
 
+Mise en place de la pagination pour afficher des pages de 5 substituts.
+
 ---
 
 ### delete : supprimer une paire de produit enregistré
@@ -277,7 +281,7 @@ le nom du template par défaut : *products/substitute_confirm_delete.html*
 * Utilisation de l'utilisateur en session pour faire une requête (*myproducts*)
 * Récupération de données sur une table `ManyToMany`
 * Utilisation du nom du template générique (*delete*)
-
+* Utilisation du module `Paginator`
 
 
 ## 6 - Mise en ligne

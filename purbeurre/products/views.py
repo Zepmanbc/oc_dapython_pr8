@@ -4,6 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
 from authentication.models import User
 from django.views.generic import ListView, DetailView, DeleteView
+from django.core.paginator import Paginator
 
 from .models import Product, Substitute
 # Create your views here.
@@ -11,9 +12,10 @@ from .models import Product, Substitute
 
 class SearchView(ListView):
     template_name = 'products/search.html'
+    paginate_by = 9
 
     def get_queryset(self):
-        return Product.objects.filter(product_name__icontains=self.request.GET['query'])
+        return Product.objects.filter(product_name__icontains=self.request.GET['query']).order_by('product_name')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -56,6 +58,7 @@ class DetailProductView(DetailView):
 
 class MyProductsView(LoginRequiredMixin, ListView):
     template_name = 'products/myproducts.html'
+    paginate_by = 5
 
     def get_queryset(self):
         return Substitute.objects.filter(user_id=self.request.user.id).order_by('-id')
