@@ -97,7 +97,7 @@ def SaveView(request):
                 return redirect('products:myproducts')
             else:
                 return redirect(next_url+"?allreadysaved")
-    return redirect('products:index')
+    return redirect('index')
 
 
 

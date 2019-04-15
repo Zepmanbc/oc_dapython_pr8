@@ -39,4 +39,4 @@ class RegisterView(FormView):
 @login_required
 def LogoutView(request):
     logout(request)
-    return redirect('products:index')
+    return redirect('index')

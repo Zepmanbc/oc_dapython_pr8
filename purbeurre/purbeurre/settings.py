@@ -141,8 +141,8 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 AUTH_USER_MODEL = 'authentication.User'
-LOGIN_URL = '/login/'
-LOGIN_REDIRECT_URL = '/account/'
+LOGIN_URL = 'authentication:login'
+LOGIN_REDIRECT_URL = 'authentication:account'
 
 
 # Internationalization

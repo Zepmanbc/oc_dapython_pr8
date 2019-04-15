@@ -1,6 +1,6 @@
 # Créez une plateforme pour amateurs de Nutella
 
-## 1 - Plannification du projet (6h30)
+## 1 - Plannification du projet
 
 [Dépot Github](https://github.com/Zepmanbc/oc_dapython_pr8)
 
@@ -8,7 +8,7 @@
 
 [Analyse fonctionnelle](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/doc/analyse_fonctionnelle.md)
 
-## 2 - Création d'un nouveau projet Django (1h)
+## 2 - Création d'un nouveau projet Django
 
 création d'un environnement virtuel avec pipenv puis installation du packet django 2.1.7
 
@@ -72,6 +72,31 @@ Réalisation de 5 pages à partir du template pour correspondre au cahier des ch
 Découpage avec une partie base et différents blocs.
 
 ---
+
+## 4 - Purbeurre
+
+C'est le module principal du projet.
+
+il y a les composants communs dans les dossiers *template* et *static*.
+
+
+### index : la page d'accueil du site
+
+J'ai utilisé la vue générique `TemplateView` directement dans `urlpatterns` en définissant le *template* cible.
+
+    urlpatterns = [
+        path('', TemplateView.as_view(template_name='products/index.html'), name='index'),
+    ]
+
+J'ai placé ici et procédé de même pour la page de mentions légales.
+
+Il y a également l'import des *ulrpattern* des application sont préfixées.
+
+---
+
+### Compétances aquises sur ce module.
+
+* Utilisation de vue générique directement dans `urlpatterns` (*index*)
 
 ## 4 - Authentification
 
@@ -145,16 +170,6 @@ Mise en place d'une commande personnalisée `django-admin` pour peupler la base 
 la commande:
 
     python manage.py fillindb 50
-
----
-
-### index : la page d'accueil du site
-
-J'ai utilisé la vue générique `TemplateView` directement dans `urlpatterns` en définissant le *template* cible.
-
-    urlpatterns = [
-        path('', TemplateView.as_view(template_name='products/index.html'), name='index'),
-    ]
 
 ---
 
@@ -255,7 +270,6 @@ le nom du template par défaut : *products/substitute_confirm_delete.html*
 
 ### Compétances aquises sur ce module.
 
-* Utilisation de vue générique directement dans `urlpatterns` (*index*)
 * Utilisation de vue générique (`ListView`, `DetailView`, `DeleteView`)
 * Définition d'une requete spécifique dans une vue générique (`get_queryset`)
 * Ajout d'élement à `context` dans une vue générique (`get_context_data`)
