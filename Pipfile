@@ -6,11 +6,11 @@ verify_ssl = true
 [dev-packages]
 flake8 = "*"
 mysqlclient = "*"
-django-debug-toolbar = "*"
 
 [packages]
 django = "*"
 requests = "*"
+pytest-django = "*"
 
 [requires]
 python_version = "3.6"
