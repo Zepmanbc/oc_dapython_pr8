@@ -3,3 +3,5 @@
 *__pycache__*
 purbeurre/products/migrations/*
 purbeurre/authentication/migrations/*
+purbeurre/htmlcov/*
+purbeurre/.coverage
