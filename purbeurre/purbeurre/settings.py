@@ -25,7 +25,6 @@ def get_env_variable(var_name):
         error_msg = "Set the {} environment variable".format(var_name)
         raise ImproperlyConfigured(error_msg)
 
-
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -42,10 +41,7 @@ if get_env_variable('ENV') == 'PRODUCTION':
     ALLOWED_HOSTS = ['bc-ocdapythonpr8.herokuapp.com']
 else:
     DEBUG = True
-    ALLOWED_HOSTS = ['127.0.0.1']
-
-
-
+    ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 # Application definition
 
@@ -100,10 +96,7 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 if get_env_variable('ENV') == 'PRODUCTION':
     DATABASES = {}
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
-    # DATABASES = {
-    #     'default':
-    #         dj_database_url.config(conn_max_age=600, ssl_require=True)
-    # }
+
 else:
     from django.db.backends.mysql.base import DatabaseWrapper
     DatabaseWrapper.data_types['DateTimeField'] = 'datetime'

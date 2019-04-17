@@ -313,11 +313,12 @@ envoi vers Heroku
 
     git push heroku master
 
-migration et peuplage de la base
+migration et peuplage de la base (j'ai eu des soucis de migrations)
 
-    heroku run purbeurre/manage.py makemigrations
-    heroku run purbeurre/manage.py migrate
-    heroku run purbeurre/manage.py fillindb 50
+    heroku run bash
+    python purbeurre/manage.py makemigrations
+    python purbeurre/manage.py migrate
+    python purbeurre/manage.py fillindb 50
 
 
 Mise en place de Travis, Coverage et HEroku
