@@ -15,6 +15,7 @@ import os
 from django.core.exceptions import ImproperlyConfigured
 
 import dj_database_url
+import django_heroku
 
 def get_env_variable(var_name):
     """Get the environment variable or return exception."""
@@ -23,7 +24,6 @@ def get_env_variable(var_name):
     except KeyError:
         error_msg = "Set the {} environment variable".format(var_name)
         raise ImproperlyConfigured(error_msg)
-
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -41,10 +41,7 @@ if get_env_variable('ENV') == 'PRODUCTION':
     ALLOWED_HOSTS = ['bc-ocdapythonpr8.herokuapp.com']
 else:
     DEBUG = True
-    ALLOWED_HOSTS = ['127.0.0.1']
-
-
-
+    ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0']
 
 # Application definition
 
@@ -97,18 +94,9 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 if get_env_variable('ENV') == 'PRODUCTION':
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': get_env_variable('DB_NAME'),
-            'USER': get_env_variable('DB_USER'),
-            # 'PASSWORD': get_env_variable('DB_PASSWORD'),
-            'PASSWORD': '',
-            'HOST': '',
-            'PORT': '5432',
-        }
-    }
 else:
     from django.db.backends.mysql.base import DatabaseWrapper
     DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
@@ -173,17 +161,13 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
 if os.environ.get('ENV') == 'PRODUCTION':
 
-    # Static files settings
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
     # Extra places for collectstatic to find static files.
     STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static'),
+        os.path.join(BASE_DIR, 'static'),
     )
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
-    db_from_env = dj_database_url.config(conn_max_age=500)
-    DATABASES['default'].update(db_from_env)
+    django_heroku.settings(locals())

@@ -286,4 +286,39 @@ le nom du template par défaut : *products/substitute_confirm_delete.html*
 
 ## 6 - Mise en ligne
 
+### Mise en place de Heroku
+
+création de l'application sur l'interface web puis ajout du remote
+
+    heroku git:remote -a bc-ocdapythonpr8
+
+Activation de Postgres
+
+    heroku addons:create heroku-postgresql:hobby-dev
+
+Définition de DATABASES
+
+    DATABASES = {
+        'default':
+            dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+
+création des variables d'environnement
+
+    heroku config:set ENV=PRODUCTION
+    heroku config:set SECRET_KEY='\x0bq(IWra-}ef^Kf!K+1Tm\n3>('
+    heroku config:set SECRET_KEY=['%secret_key%']
+
+envoi vers Heroku
+
+    git push heroku master
+
+migration et peuplage de la base (j'ai eu des soucis de migrations)
+
+    heroku run bash
+    python purbeurre/manage.py makemigrations
+    python purbeurre/manage.py migrate
+    python purbeurre/manage.py fillindb 50
+
+
 Mise en place de Travis, Coverage et HEroku
