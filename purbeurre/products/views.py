@@ -101,6 +101,3 @@ def SaveView(request):
             else:
                 return redirect(next_url+"?allreadysaved")
     return redirect('index')
-
-
-
