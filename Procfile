@@ -1,1 +1,1 @@
-web: gunicorn purbeurre:app
+web: gunicorn purbeurre/purbeurre:app
