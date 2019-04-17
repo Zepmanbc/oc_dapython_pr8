@@ -299,8 +299,8 @@ Activation de Postgres
 création des variables d'environnement
 
     heroku config:set ENV=PRODUCTION
-    heroku config:set SECRET_KEY=['%secret_key%']
     heroku config:set SECRET_KEY='\x0bq(IWra-}ef^Kf!K+1Tm\n3>('
+    heroku config:set SECRET_KEY=['%secret_key%']
 
 envoi vers Heroku
 
