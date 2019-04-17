@@ -99,18 +99,19 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 
 if get_env_variable('ENV') == 'PRODUCTION':
     pass
-    # DATABASES = {
-    #     'default': {
-    #         'ENGINE': 'django.db.backends.postgresql',
-    #         'NAME': get_env_variable('DB_NAME'),
-    #         # 'USER': get_env_variable('DB_USER'),
-    #         'USER': '',
-    #         # 'PASSWORD': get_env_variable('DB_PASSWORD'),
-    #         'PASSWORD': '',
-    #         'HOST': '',
-    #         'PORT': '5432',
-    #     }
-    # }
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            # 'NAME': get_env_variable('DB_NAME'),
+            'NAME': '',
+            # 'USER': get_env_variable('DB_USER'),
+            'USER': '',
+            # 'PASSWORD': get_env_variable('DB_PASSWORD'),
+            'PASSWORD': '',
+            'HOST': '',
+            'PORT': '5432',
+        }
+    }
 else:
     from django.db.backends.mysql.base import DatabaseWrapper
     DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
