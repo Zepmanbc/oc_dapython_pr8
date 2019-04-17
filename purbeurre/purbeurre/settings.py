@@ -100,9 +100,8 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 if get_env_variable('ENV') == 'PRODUCTION':
     pass
     DATABASES = {
-        'default': {
-            dj_database_url.config(conn_max_age=600, ssl_require=True),
-        }
+        'default': 
+            dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
 else:
     from django.db.backends.mysql.base import DatabaseWrapper
