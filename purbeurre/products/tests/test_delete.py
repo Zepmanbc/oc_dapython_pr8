@@ -34,6 +34,10 @@ def test_delete_post(test_save_post_ok_substitute):
     assert response.status_code == 302
     assert '/myproducts/' in response.url
 
-# not a good id : 404
 
-# good id and validate: modify db, redirect
+def test_delete_false_id(test_save_post_ok_substitute):
+    client.login(username='test@test.com', password="12345")
+    assert Substitute.objects.all().count() == 1
+    response = client.post('/products/delete/2')
+    assert response.status_code == 404
+    assert Substitute.objects.all().count() == 1
