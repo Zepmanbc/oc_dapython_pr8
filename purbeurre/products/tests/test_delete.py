@@ -1,11 +1,10 @@
 from django.test import Client
-from django.urls import reverse
 
 import pytest
 from pytest_fixture import createTwoProducts, createUser
 from test_save import test_save_post_ok_substitute
 
-from products.models import Product, Substitute
+from products.models import Substitute
 
 client = Client()
 pytestmark = pytest.mark.django_db

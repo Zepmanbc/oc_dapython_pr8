@@ -12,6 +12,12 @@ django = "*"
 requests = "*"
 pytest-django = "*"
 pytest-cov = "*"
+gunicorn = "*"
+django-heroku = "*"
+whitenoise = "*"
+dj-database-url = "*"
+psycopg2 = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.6"

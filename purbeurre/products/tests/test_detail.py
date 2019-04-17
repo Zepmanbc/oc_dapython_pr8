@@ -4,7 +4,6 @@ from django.urls import reverse
 import pytest
 from pytest_fixture import createTwoProducts, createUser
 
-from products.models import Product, Substitute
 
 client = Client()
 pytestmark = pytest.mark.django_db

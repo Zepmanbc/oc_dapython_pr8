@@ -14,6 +14,7 @@ import os
 
 from django.core.exceptions import ImproperlyConfigured
 
+import dj_database_url
 
 def get_env_variable(var_name):
     """Get the environment variable or return exception."""
@@ -37,7 +38,7 @@ SECRET_KEY = get_env_variable('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 if get_env_variable('ENV') == 'PRODUCTION':
     DEBUG = False
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['bc-ocdapythonpr8.herokuapp.com']
 else:
     DEBUG = True
     ALLOWED_HOSTS = ['127.0.0.1']
@@ -68,6 +69,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'purbeurre.urls'
@@ -95,12 +97,14 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 if get_env_variable('ENV') == 'PRODUCTION':
+
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': get_env_variable('DB_NAME'),
             'USER': get_env_variable('DB_USER'),
-            'PASSWORD': get_env_variable('DB_PASSWORD'),
+            # 'PASSWORD': get_env_variable('DB_PASSWORD'),
+            'PASSWORD': '',
             'HOST': '',
             'PORT': '5432',
         }
@@ -166,3 +170,20 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
+
+if os.environ.get('ENV') == 'PRODUCTION':
+
+    # Static files settings
+    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+
+    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+
+    # Extra places for collectstatic to find static files.
+    STATICFILES_DIRS = (
+        os.path.join(PROJECT_ROOT, 'static'),
+    )
+
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+    db_from_env = dj_database_url.config(conn_max_age=500)
+    DATABASES['default'].update(db_from_env)
