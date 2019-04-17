@@ -101,7 +101,7 @@ if get_env_variable('ENV') == 'PRODUCTION':
     pass
     DATABASES = {
         'default': {
-            'ENGINE': 'django.db.backends.postgresql',
+            # 'ENGINE': 'django.db.backends.postgresql',
             dj_database_url.config(conn_max_age=600, ssl_require=True),
             # 'NAME': get_env_variable('DB_NAME'),
             # 'NAME': 'purbeurre',
