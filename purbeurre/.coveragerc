@@ -5,8 +5,8 @@ omit =
   *migrations/*,
   *settings*,
   *tests/*,
-  *urls.py,
   *wsgi/*,
   manage.py,
   *admin.py*,
   *wsgi.py*
+  *models.py*
