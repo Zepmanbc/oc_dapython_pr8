@@ -103,7 +103,8 @@ if get_env_variable('ENV') == 'PRODUCTION':
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
             'NAME': get_env_variable('DB_NAME'),
-            'USER': get_env_variable('DB_USER'),
+            # 'USER': get_env_variable('DB_USER'),
+            'USER': '',
             # 'PASSWORD': get_env_variable('DB_PASSWORD'),
             'PASSWORD': '',
             'HOST': '',
