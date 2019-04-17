@@ -4,7 +4,10 @@ python:
 install:
   - 'pip install pipenv'
   - 'pipenv sync'
+  - pipenv install coveralls
 script:
+  - python manage.py makemigrations
+  - python manage.py migrate
   - pytest
 after_success:
   - coveralls

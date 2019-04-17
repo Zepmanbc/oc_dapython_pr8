@@ -115,6 +115,14 @@ else:
         }
     }
 
+if get_env_variable('ENV') == 'TRAVIS':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:'
+        }
+    }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/2.1/ref/settings/#auth-password-validators
