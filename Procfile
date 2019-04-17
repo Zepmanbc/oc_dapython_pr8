@@ -1,1 +1,1 @@
-web: gunicorn purbeurre/purbeurre:app
+web: gunicorn purbeurre.wsgi --log-file -

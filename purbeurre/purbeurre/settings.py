@@ -15,6 +15,7 @@ import os
 from django.core.exceptions import ImproperlyConfigured
 
 import dj_database_url
+import django_heroku
 
 def get_env_variable(var_name):
     """Get the environment variable or return exception."""
@@ -173,17 +174,19 @@ STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/'),)
 
 if os.environ.get('ENV') == 'PRODUCTION':
 
-    # Static files settings
-    PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+    # # Static files settings
+    # PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
-    STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+    # STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
 
-    # Extra places for collectstatic to find static files.
-    STATICFILES_DIRS = (
-        os.path.join(PROJECT_ROOT, 'static'),
-    )
+    # # Extra places for collectstatic to find static files.
+    # STATICFILES_DIRS = (
+    #     os.path.join(PROJECT_ROOT, 'static'),
+    # )
 
     STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
+
+django_heroku.settings(locals())
