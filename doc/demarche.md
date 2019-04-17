@@ -296,6 +296,13 @@ Activation de Postgres
 
     heroku addons:create heroku-postgresql:hobby-dev
 
+Définition de DATABASES
+
+    DATABASES = {
+        'default':
+            dj_database_url.config(conn_max_age=600, ssl_require=True)
+    }
+
 création des variables d'environnement
 
     heroku config:set ENV=PRODUCTION

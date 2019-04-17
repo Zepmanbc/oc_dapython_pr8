@@ -98,9 +98,8 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 if get_env_variable('ENV') == 'PRODUCTION':
-    pass
     DATABASES = {
-        'default': 
+        'default':
             dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
 else:
