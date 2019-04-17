@@ -6,8 +6,8 @@ install:
   - 'pipenv sync'
   - pipenv install coveralls
 script:
-  - python manage.py makemigrations
-  - python manage.py migrate
+  - python purbeurre/manage.py makemigrations
+  - python purbeurre/manage.py migrate
   - pytest
 after_success:
   - coveralls
