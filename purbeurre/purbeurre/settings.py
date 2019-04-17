@@ -98,10 +98,12 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 
 if get_env_variable('ENV') == 'PRODUCTION':
-    DATABASES = {
-        'default':
-            dj_database_url.config(conn_max_age=600, ssl_require=True)
-    }
+    DATABASES = {}
+    DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    # DATABASES = {
+    #     'default':
+    #         dj_database_url.config(conn_max_age=600, ssl_require=True)
+    # }
 else:
     from django.db.backends.mysql.base import DatabaseWrapper
     DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
