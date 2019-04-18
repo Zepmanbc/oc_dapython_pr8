@@ -8,6 +8,8 @@
 
 [Analyse fonctionnelle](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/doc/analyse_fonctionnelle.md)
 
+[Application sur Heroku](https://bc-ocdapythonpr8.herokuapp.com/)
+
 ## 2 - Création d'un nouveau projet Django
 
 création d'un environnement virtuel avec pipenv puis installation du packet django 2.1.7
