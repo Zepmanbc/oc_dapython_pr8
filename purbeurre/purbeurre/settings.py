@@ -100,15 +100,10 @@ if get_env_variable('ENV') == 'PRODUCTION':
 elif get_env_variable('ENV') == 'TRAVIS':
     DATABASES = {
         'default': {
-            'ENGINE':   'django.db.backends.postgresql_psycopg2',
-            'NAME':     'travisdb',
-            'USER':     'postgres',
-            'PASSWORD': '',
-            'HOST':     'localhost',
-            'PORT':     '',
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': 'travisdb'
         }
     }
-
 else:
     from django.db.backends.mysql.base import DatabaseWrapper
     DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
