@@ -97,6 +97,14 @@ if get_env_variable('ENV') == 'PRODUCTION':
     DATABASES = {}
     DATABASES['default'] = dj_database_url.config(conn_max_age=600, ssl_require=True)
 
+elif get_env_variable('ENV') == 'TRAVIS':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': ':memory:'
+        }
+    }
+    
 else:
     from django.db.backends.mysql.base import DatabaseWrapper
     DatabaseWrapper.data_types['DateTimeField'] = 'datetime'
@@ -115,13 +123,7 @@ else:
         }
     }
 
-if get_env_variable('ENV') == 'TRAVIS':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': ':memory:'
-        }
-    }
+
 
 
 # Password validation
