@@ -1,7 +1,6 @@
 .env
 .vscode/
 *__pycache__*
-purbeurre/*/migrations/*
 htmlcov/*
 purbeurre/htmlcov/*
 */.pytest_cache/*
