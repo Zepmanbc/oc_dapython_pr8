@@ -4,6 +4,7 @@ python:
 install:
   - 'pip install pipenv'
   - 'pipenv sync'
+  - pip install mysqlclient
   - pipenv install coveralls
 script:
   - python purbeurre/manage.py makemigrations
