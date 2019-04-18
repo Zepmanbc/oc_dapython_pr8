@@ -4,17 +4,17 @@
 
 La startup Pur Beurre souhaite faire une application en ligne à partir du précédent projet ([oc_dapython_pr5](https://github.com/Zepmanbc/oc_dapython_pr5/)).
 
-Il faut fournir une application web permettant de selectionner le substitut d'un aliment qui sera jugé plus sain.
+Il faut fournir une application web permettant de sélectionner le substitut d'un aliment qui sera jugé plus sain.
 
 
 ## 1. - User stories
 
-* **En tant que** que Lily Kala **je veux** trouver un produit de substitution en un clic **afin de** ne pas perdre de temps
-* **En tant que** que Lily Kala **je veux** savoir où me procurer le produit de substitution **afin de** ne pas perdre de temps
+* **En tant que** Lily Kala **je veux** trouver un produit de substitution en un clic **afin de** ne pas perdre de temps
+* **En tant que** Lily Kala **je veux** savoir où me procurer le produit de substitution **afin de** ne pas perdre de temps
 * **En tant que** Pur beurre **je veux** connaitre l'adresse des utilisateur **afin de** pouvoir les prévenir de mises à jours
-* **En tant que** que Lily Kala **je veux** sélectionner les produits sur les critères bon et donne de l'énergie **afin d'** aller à l'essentiel (pas besoin du visuel)
+* **En tant que** Lily Kala **je veux** sélectionner les produits sur les critères bon et donne de l'énergie **afin d'** aller à l'essentiel (pas besoin du visuel)
 * **En tant que** utilisateur **je veux** trouver un aliment qui a une bonne note sur OFF **afin que** la nourriture que je mange soit meilleure pour ma santé
-* **En tant que** utilisateur **je veux** retrouver les recherches que j'ai déjà effectué **afin que** je ne perde pas de temps à recommencer la recherche
+* **En tant que** utilisateur **je veux** retrouver les recherches que j'ai déjà effectuées **afin que** je ne perde pas de temps à recommencer la recherche
 
 ## 2. - Règles fonctionnelles
 
@@ -75,3 +75,7 @@ Une évolution est prévue de pouvoir commander un produit directement depuis le
 ## 9 - Modéle physique de données
 
 ![Modèle physique de données](img/06_MPD.png)
+
+Le résultat des models:
+
+![MySQL_MPD](img/MySQL_MPD.png)

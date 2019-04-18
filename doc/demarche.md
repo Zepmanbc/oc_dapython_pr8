@@ -1,6 +1,6 @@
 # Créez une plateforme pour amateurs de Nutella
 
-## 1 - Plannification du projet
+## 1 - Planification du projet
 
 [Dépot Github](https://github.com/Zepmanbc/oc_dapython_pr8)
 
@@ -29,33 +29,78 @@ création de variables d'environnement
 Modification du fichier de configuration
 
 * Langue et fuseau horaire
-* configuration PROD/DEV
-* ajout de la fonction `get_env_variable()`
-* configuration de la base de donnée
+* Configuration PROD/DEV
+* Ajout de la fonction `get_env_variable()`
+* Configuration de la base de donnée
 
 Création des dossiers static et templates
 
-        .
-        └── purbeurre
-           ├── manage.py
-           ├── products
-           │   ├── __init__.py
-           │   ├── admin.py
-           │   ├── apps.py
-           │   ├── migrations
-           │   │   └── __init__.py
-           │   ├── models.py
-           │   ├── static
-           │   │   └── products
-           │   ├── templates
-           │   │   └── products
-           │   ├── tests.py
-           │   └── views.py
-           └── purbeurre
-               ├── __init__.py
-               ├── settings.py
-               ├── urls.py
-               └── wsgi.py
+    └── purbeurre
+       ├── authentication................=> Authentication application
+       │   ├── __init__.py
+       │   ├── admin.py
+       │   ├── apps.py
+       │   ├── forms.py
+       │   ├── migrations
+       │   ├── models.py
+       │   ├── static
+       │   ├── templates
+       │   │   ├── authentication
+       │   │   │   ├── account.html
+       │   │   │   └── register.html
+       │   │   └── registration
+       │   │       └── login.html
+       │   ├── tests
+       │   │   ├── __init__.py
+       │   │   ├── test_account.py
+       │   │   ├── test_login.py
+       │   │   ├── test_logout.py
+       │   │   └── test_register.py
+       │   ├── urls.py
+       │   └── views.py
+       ├── products......................=> Products application
+       │   ├── __init__.py
+       │   ├── admin.py
+       │   ├── apps.py
+       │   ├── management
+       │   │   └── commands
+       │   │       └── fillindb.py
+       │   ├── migrations
+       │   ├── models.py
+       │   ├── templates
+       │   │   └── products
+       │   │       ├── base_product_title_img.html
+       │   │       ├── detail.html
+       │   │       ├── myproducts.html
+       │   │       ├── result.html
+       │   │       ├── search.html
+       │   │       └── substitute_confirm_delete.html
+       │   ├── tests
+       │   │   ├── __init__.py
+       │   │   ├── pytest_fixture.py
+       │   │   ├── test_delete.py
+       │   │   ├── test_detail.py
+       │   │   ├── test_myproducts.py
+       │   │   ├── test_result.py
+       │   │   ├── test_save.py
+       │   │   └── test_search.py
+       │   ├── urls.py
+       │   └── views.py
+       ├── purbeurre.....................=> Project folder
+       │   ├── __init__.py
+       │   ├── settings.py
+       │   ├── static
+       │   ├── tests
+       │   │   ├── __init__.py
+       │   │   └── test_purbeurre.py
+       │   ├── test_settings.py
+       │   ├── urls.py
+       │   └── wsgi.py
+       ├── manage.py
+       ├── pytest.ini
+       ├── static	....................=> core statics
+       └── templates....................=> core templates
+
 
 ---
 
@@ -64,7 +109,7 @@ Création des dossiers static et templates
 Réalisation de 5 pages à partir du template pour correspondre au cahier des charges. (doc/front/*)
 
 * Accueil
-* Resultats / Mes aliments
+* Résultats / Mes aliments
 * Page Aliment
 * Mon Compte
 * Mention légales (génération sur le site [generer-mentions-legales.com](https://www.generer-mentions-legales.com/))
@@ -94,7 +139,7 @@ Il y a également l'import des *ulrpattern* des application sont préfixées.
 
 ---
 
-### Compétances aquises sur ce module.
+### Compétences acquises sur ce module.
 
 * Utilisation de vue générique directement dans `urlpatterns` (*index*)
 
@@ -122,7 +167,7 @@ J'ai utilisé la vue générique `LoginView` qui appelle le template `registrati
 
 J'ai utilisé le décorateur `@login_required` qui permet de renvoyer vers l'adresse définie dans `settings.LOGIN_URL` si l'utilisateur n'est pas authentifié.
 
-J'ai utilisé le raccourcis `redirect`.
+J'ai utilisé le raccourci `redirect`.
 
     @login_required
     def LogoutView(request):
@@ -147,7 +192,7 @@ Utilisation de la méthode `get` pour afficher la page et récupérer les inform
 
 ---
 
-### Compétances aquises sur ce module.
+### Compétences acquises sur ce module.
 
 * Surcharge de *model* de base de Django (*User*)
 * Utilisation de vues génériques (*LoginView*, *FormView*)
@@ -167,7 +212,7 @@ Mise en place d'une commande personnalisée `django-admin` pour peupler la base 
            └── commands
                └── fillindb.py
 
-la commande:
+La commande:
 
     python manage.py fillindb 50
 
@@ -177,9 +222,9 @@ la commande:
 
 J'ai utilisé une vue générique `ListView`.
 
-* je récupère l'élément à rechercher *query* qui est une requete `GET`
-* je définie la requete dans la base de donnée avec la méthode `get_queryset`
-* je rajoute des éléments à `context` pour mon template avec la methode `get_context_data`
+* Je récupère l'élément à rechercher *query* qui est une requete `GET`
+* Je définie la requete dans la base de donnée avec la méthode `get_queryset`
+* Je rajoute des éléments à `context` pour mon template avec la methode `get_context_data`
 
 [products/search.html](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/purbeurre/products/templates/products/search.html)
 
@@ -203,10 +248,10 @@ Requête sur la liste de produit:
         .exclude(id=self.kwargs['product_id'])\
         .order_by('nutrition_grades')[:9]
 
-1. filtre sur la même catégorie que le produit d'origine
-1. filtre sur un *nutrition_grades* supérieur ou égal
-1. exclusion du produit d'origine
-1. classement par *nutrition_grades* (ordre croissant) et limitation aux 9 premiers produits
+1. Filtre sur la même catégorie que le produit d'origine
+1. Filtre sur un *nutrition_grades* supérieur ou égal
+1. Exclusion du produit d'origine
+1. Classement par *nutrition_grades* (ordre croissant) et limitation aux 9 premiers produits
 
 Récupération de la variable dans l'url
 
@@ -230,13 +275,13 @@ Affichage d'un message si le produit à déjà été enregistré
 
 J'ai utilisé une vue générique `DetailView`.
 
-la requete se fait sur la clé primaire qui arrive dans l'url : `<int:pk>`
+La requête se fait sur la clé primaire qui arrive dans l'url : `<int:pk>`
     
     rlpatterns = [
         path('<int:pk>/detail/', views.DetailProductView.as_view(), name='detail'),
     ]
 
-je récupère le nom du produit dans `kwargs['object']`
+Je récupère le nom du produit dans `kwargs['object']`
 
 ---
 
@@ -244,15 +289,15 @@ je récupère le nom du produit dans `kwargs['object']`
 
 J'ai utilisé une vue générique `ListView`.
 
-il y a une requête sur la table `Substitute` filtré sur l'id de l'utilisateur
+Il y a une requête sur la table `Substitute` filtré sur l'id de l'utilisateur
 
     def get_queryset(self):
         return Substitute.objects.filter(user_id=self.request.user.id).order_by('-id')
 
 Les données sont ensuite récupérées dans la page [products/myproducts.html](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/purbeurre/products/templates/products/myproducts.html)
 
-* object_list[0].product_id : donne accés à la table Product pour le produit d'origine
-* object_list[0].substitute_id : donne accés à la table Product pour le produit de substitution
+* object_list[0].product_id : donne accès à la table Product pour le produit d'origine
+* object_list[0].substitute_id : donne accès à la table Product pour le produit de substitution
 
 Utilisation de `LoginRequiredMixin` pour protéger la page
 
@@ -266,17 +311,17 @@ Mise en place de la pagination pour afficher des pages de 5 substituts.
 
 J'ai utilisé une vue générique `DeleteView`
 
-J'ai appelé la vue avec une requete `GET` afin de pouvoir afficher une page de confirmation.
+J'ai appelé la vue avec une requête `GET` afin de pouvoir afficher une page de confirmation.
 
 le nom du template par défaut : *products/substitute_confirm_delete.html*
 
 ---
 
-### Compétances aquises sur ce module.
+### Compétences acquises sur ce module.
 
 * Utilisation de vue générique (`ListView`, `DetailView`, `DeleteView`)
 * Définition d'une requete spécifique dans une vue générique (`get_queryset`)
-* Ajout d'élement à `context` dans une vue générique (`get_context_data`)
+* Ajout d'éléments à `context` dans une vue générique (`get_context_data`)
 * Requête "complexe" (result)
 * Utilisation de l'utilisateur en session pour faire une requête (*myproducts*)
 * Récupération de données sur une table `ManyToMany`
@@ -286,9 +331,9 @@ le nom du template par défaut : *products/substitute_confirm_delete.html*
 
 ## 6 - Mise en ligne
 
-### Mise en place de Heroku
+### Mise en production
 
-création de l'application sur l'interface web puis ajout du remote
+Création de l'application sur l'interface web de Heroku puis ajout du remote
 
     heroku git:remote -a bc-ocdapythonpr8
 
@@ -303,22 +348,26 @@ Définition de DATABASES
             dj_database_url.config(conn_max_age=600, ssl_require=True)
     }
 
-création des variables d'environnement
+Création du [Procfile](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/Procfile)
+
+Création des variables d'environnement sur Heroku
 
     heroku config:set ENV=PRODUCTION
-    heroku config:set SECRET_KEY='\x0bq(IWra-}ef^Kf!K+1Tm\n3>('
     heroku config:set SECRET_KEY=['%secret_key%']
 
-envoi vers Heroku
+Envoi vers Heroku
 
     git push heroku master
 
-migration et peuplage de la base (j'ai eu des soucis de migrations)
+Migration et peuplage de la base
 
     heroku run bash
-    python purbeurre/manage.py makemigrations
     python purbeurre/manage.py migrate
     python purbeurre/manage.py fillindb 50
 
 
-Mise en place de Travis, Coverage et HEroku
+Mise en place de Travis : [https://travis-ci.org/Zepmanbc/oc_dapython_pr8](https://travis-ci.org/Zepmanbc/oc_dapython_pr8)
+
+[.travis.yml](https://github.com/Zepmanbc/oc_dapython_pr8/blob/master/.travis.yml)
+
+Mise en place de Coveralls : [https://coveralls.io/github/Zepmanbc/oc_dapython_pr8](https://coveralls.io/github/Zepmanbc/oc_dapython_pr8)

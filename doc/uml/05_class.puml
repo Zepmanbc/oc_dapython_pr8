@@ -6,9 +6,8 @@ class Products{
     show_substitute()
     save_substitute()
     delete_substitute()
-    show_saved_product()
-    show_saved_substitute()
-    load_data()
+    show_my_product()
+    fillindb()
     --
     name: String
     nutriscore: String
