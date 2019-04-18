@@ -3,6 +3,7 @@ from .models import User
 
 
 class RegisterForm(UserCreationForm):
+    """Register form definition."""
 
     class Meta:
         model = User

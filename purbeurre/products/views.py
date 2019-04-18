@@ -1,21 +1,23 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from authentication.models import User
 from django.views.generic import ListView, DetailView, DeleteView
-from django.core.paginator import Paginator
 
+from authentication.models import User
 from .models import Product, Substitute
 # Create your views here.
 
 
 class SearchView(ListView):
+    """Return products from DB from query."""
     template_name = 'products/search.html'
     paginate_by = 9
 
     def get_queryset(self):
-        return Product.objects.filter(product_name__icontains=self.request.GET['query']).order_by('product_name')
+        return Product.objects.filter(
+            product_name__icontains=self.request.GET['query']).\
+                order_by('product_name')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -25,6 +27,7 @@ class SearchView(ListView):
 
 
 class ResultView(ListView):
+    """Return substitutes with same category and better/equal nutrigrade."""
     template_name = 'products/result.html'
 
     def get_queryset(self):
@@ -47,6 +50,7 @@ class ResultView(ListView):
 
 
 class DetailProductView(DetailView):
+    """Show product details."""
     template_name = 'products/detail.html'
     model = Product
 
@@ -57,11 +61,13 @@ class DetailProductView(DetailView):
 
 
 class MyProductsView(LoginRequiredMixin, ListView):
+    """Show saved products."""
     template_name = 'products/myproducts.html'
     paginate_by = 5
 
     def get_queryset(self):
-        return Substitute.objects.filter(user_id=self.request.user.id).order_by('-id')
+        return Substitute.objects.filter(
+            user_id=self.request.user.id).order_by('-id')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -71,6 +77,7 @@ class MyProductsView(LoginRequiredMixin, ListView):
 
 
 class DeleteSubstituteView(LoginRequiredMixin, DeleteView):
+    """Ask for delete saved product."""
     model = Substitute
     success_url = reverse_lazy('products:myproducts')
 
@@ -82,6 +89,7 @@ class DeleteSubstituteView(LoginRequiredMixin, DeleteView):
 
 @login_required
 def SaveView(request):
+    """Save product/substitute."""
     if request.method == 'POST':
         product_id = request.POST['product_id']
         substitute_id = request.POST['substitute_id']

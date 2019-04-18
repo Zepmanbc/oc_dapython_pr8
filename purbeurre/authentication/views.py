@@ -13,6 +13,7 @@ from .forms import RegisterForm
 
 
 class AccountView(LoginRequiredMixin, TemplateView):
+    """Show Account informations."""
     template_name = 'authentication/account.html'
 
     def get(self, request, *args, **kwargs):
@@ -22,6 +23,7 @@ class AccountView(LoginRequiredMixin, TemplateView):
 
 
 class RegisterView(FormView):
+    """Show Registration form and create user if valid."""
     form_class = RegisterForm
     success_url = reverse_lazy('authentication:account')
     template_name = 'authentication/register.html'
@@ -38,5 +40,6 @@ class RegisterView(FormView):
 
 @login_required
 def LogoutView(request):
+    """Logout user."""
     logout(request)
     return redirect('index')

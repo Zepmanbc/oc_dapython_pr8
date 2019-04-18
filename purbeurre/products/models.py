@@ -6,6 +6,7 @@ from purbeurre import settings
 
 
 class Product(models.Model):
+    """Product model."""
     product_name = models.CharField(max_length=200)
     nutrition_grades = models.CharField(max_length=1)
     fat = models.CharField(max_length=8)
@@ -24,21 +25,14 @@ class Product(models.Model):
         return self.product_name
 
 
-# class User(models.Model):
-#     email = models.EmailField()
-#     name = models.CharField(max_length=200)
-#     password = models.CharField(max_length=200)
-
-#     def __str__(self):
-#         return self.email
-
-
 class Substitute(models.Model):
+    """Substitute model."""
     product_id = models.ForeignKey(
         Product, related_name='product', on_delete=models.CASCADE)
     substitute_id = models.ForeignKey(
         Product, related_name='substitute', on_delete=models.CASCADE)
-    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    user_id = models.ForeignKey(
+        settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
 
     class Meta:
         unique_together = (('product_id', 'substitute_id', 'user_id'),)

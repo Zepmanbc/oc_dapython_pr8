@@ -1,4 +1,9 @@
+"""Pytest settings.
+overload DATABASES for using SQLite3 fonr unit tests.
+"""
+
 from .settings import *
+
 
 DATABASES = {
     'default': {
