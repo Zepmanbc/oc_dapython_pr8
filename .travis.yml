@@ -1,14 +1,22 @@
 language: python
+
 python:
   - "3.6"
+
+services: postgresql
+
 install:
   - 'pip install pipenv'
   - 'pipenv sync'
-  - pip install mysqlclient
   - pipenv install coveralls
+
+before_script:
+  - psql -c "CREATE DATABASE travisdb;" -U postgres
+
 script:
-  - python purbeurre/manage.py makemigrations
+
   - python purbeurre/manage.py migrate
   - pytest
+
 after_success:
   - coveralls
