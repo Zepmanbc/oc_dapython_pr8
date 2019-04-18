@@ -7,7 +7,7 @@ from products.models import Product
 client = Client()
 pytestmark = pytest.mark.django_db
 
-from pytest_fixture import createTwoProducts
+from .pytest_fixture import createTwoProducts
 
 
 def test_search_good_id_return_something(createTwoProducts):

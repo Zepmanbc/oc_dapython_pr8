@@ -1,8 +1,8 @@
 from django.test import Client
 
 import pytest
-from pytest_fixture import createTwoProducts, createUser
-from test_save import test_save_post_ok_substitute
+from .pytest_fixture import createTwoProducts, createUser
+from .test_save import test_save_post_ok_substitute
 
 from products.models import Substitute
 

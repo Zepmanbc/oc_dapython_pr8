@@ -13,7 +13,7 @@ install:
 script:
 
   - python purbeurre/manage.py migrate
-  - pytest
+  - purbeurre/pytest
 
 after_success:
   - coveralls

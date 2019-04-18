@@ -1,7 +1,7 @@
 from django.test import Client
 
 import pytest
-from pytest_fixture import createTwoProducts, createUser
+from .pytest_fixture import createTwoProducts, createUser
 
 from products.models import Product, Substitute
 

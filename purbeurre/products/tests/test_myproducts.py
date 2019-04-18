@@ -2,7 +2,7 @@ from django.test import Client
 from django.urls import reverse
 
 import pytest
-from pytest_fixture import createTwoProducts, createUser
+from .pytest_fixture import createTwoProducts, createUser
 
 from products.models import Product, Substitute
 from authentication.models import User
