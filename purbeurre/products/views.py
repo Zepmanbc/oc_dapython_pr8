@@ -2,7 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.views.generic import ListView, DetailView, DeleteView
+from django.views.generic import ListView, DetailView, DeleteView, RedirectView
 
 from authentication.models import User
 from .models import Product, Substitute
@@ -91,14 +91,17 @@ class DeleteSubstituteView(LoginRequiredMixin, DeleteView):
 def SaveView(request):
     """Save product/substitute."""
     if request.method == 'POST':
+        # get data from POST
         product_id = request.POST['product_id']
         substitute_id = request.POST['substitute_id']
         next_url = request.POST['next']
+        # get data from DB
         product_obj = Product.objects.get(pk=product_id)
         substitute_obj = Product.objects.get(pk=substitute_id)
         user_obj = User.objects.get(pk=request.user.id)
         # test if all obj are sets
         if product_obj and substitute_obj and user_obj:
+            # create Substitute or return "allreadysaved"
             obj, created = Substitute.objects.get_or_create(
                 user_id=user_obj,
                 product_id=product_obj,
