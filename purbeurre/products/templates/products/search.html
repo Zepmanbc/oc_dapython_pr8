@@ -23,7 +23,9 @@
                 <a href="{% url target product.id %}">
                   <img src="{{product.image_url}}" class="rounded mx-auto d-block" alt="">
                 </a>
-              <p class="text-center">{{product|title}}</p>
+                <div class="product-thumb-legend">
+                  <p class="text-center">{{product|title}}</p>
+                </div>
             </div>
           </div>
         {% endfor %}

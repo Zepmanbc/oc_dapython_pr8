@@ -16,32 +16,36 @@
         {% endif %}
         {% for sl in object_list %}
         <div class="row align-items-center justify-content-center">
-          <div class="col-4">
-            <div class="product-thumb">
+          <div class="col-4 mx-1 px-0">
+            <div class="product-thumb-myproduct">
               <div class="nutriscore nutriscore-{{sl.product_id.nutrition_grades|upper}} text-center"></div>
               <a href="{% url 'products:detail' sl.product_id.id %}">
                 <img src="{{sl.product_id.image_url}}" class="rounded mx-auto d-block" alt="">
               </a>
-              <p class="text-center">{{sl.product_id|title}}</p>
+              <div class="product-thumb-legend">
+                <p class="text-center">{{sl.product_id|title}}</p>
+              </div>
             </div>
           </div>
-          <div class="col-1">
-            <p><i class="fas fa-arrow-right fa-4x"></i></p>
+          <div class="col-1 px-0 text-center">
+            <i class="fas fa-arrow-right"></i>
           </div>
-          <div class="col-4">
-            <div class="product-thumb">
+          <div class="col-4 mx-1 px-0">
+            <div class="product-thumb-myproduct">
               <div class="nutriscore nutriscore-{{sl.substitute_id.nutrition_grades|upper}} text-center"></div>
-              <a href="{% url 'products:detail' sl.substitute_id.id %}">
-                <img src="{{sl.substitute_id.image_url}}" class="rounded mx-auto d-block" alt="">
-              </a>
-              <p class="text-center">{{sl.substitute_id|title}}</p>
+                <a href="{% url 'products:detail' sl.substitute_id.id %}">
+                  <img src="{{sl.substitute_id.image_url}}" class="rounded mx-auto d-block" alt="">
+                </a>
+              <div class="product-thumb-legend">
+                <p class="text-center">{{sl.substitute_id|title}}</p>
+              </div>
             </div>
           </div>
-          <div class="col-1">
-            <p></p>
+          <div class="col-1 px-0">
+            <p>
               <form action="{% url 'products:delete' sl.id %}" method="GET">
                 {% csrf_token %}
-                <button type="submit" class="btn btn-link"><i class="fas fa-trash-alt fa-4x"></i></button>
+                <button type="submit" class="btn btn-link"><i class="fas fa-trash-alt"></i></button>
               </form>
             </p>
           </div>
