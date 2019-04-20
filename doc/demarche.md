@@ -330,6 +330,17 @@ le nom du template par défaut : *products/substitute_confirm_delete.html*
 * Utilisation du nom du template générique (*delete*)
 * Utilisation du module `Paginator`
 
+---
+
+## Partie Admin
+
+Ajout de la table User dans la partie *admin*
+
+* Possibilité de modifier nom/prénom
+* *email* est en lecture seule
+* Ajout de la somme des substituts enregistrés par utilisateur
+
+---
 
 ## 6 - Mise en ligne
 
