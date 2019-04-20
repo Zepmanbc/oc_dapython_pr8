@@ -52,6 +52,7 @@ hr.divider{
     background-repeat: no-repeat;
     background-attachment: scroll;
 }
+
 .product-thumb {
     margin: auto;
     margin-bottom: 2vh;
@@ -143,5 +144,28 @@ li.low {background-image: url('../img/nutricode/low.svg');}
         font-size: 1em;
         font-weight: 700;
         color: white;   
+    }
+    .product-thumb {
+        margin: auto;
+        margin-bottom: 2vh;
+        margin-top: 2vh;
+        max-width:350px;
+        position: relative;
+        border: #DE9440 solid 2px;
+        border-radius: 10px;
+        /* background-color: red; */
+    }
+    .product-thumb img{
+        padding-top: 20px;
+        margin-top: 20px;
+        max-width:150px;
+        max-height: 70%;
+    }
+    .product-thumb p{
+        max-width:200px;
+        margin: auto;
+        padding-top: 5px;
+        padding-bottom: 15px;
+        font-size: 1em;
     }
 }
