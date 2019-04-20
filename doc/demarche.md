@@ -12,7 +12,7 @@
 
 ## 2 - Création d'un nouveau projet Django
 
-création d'un environnement virtuel avec pipenv puis installation du packet django 2.1.7
+création d'un environnement virtuel avec pipenv puis installation du packet django 2.2
 
 Création du projet
 
@@ -21,12 +21,14 @@ Création du projet
     manage.py startapp
 
 création de variables d'environnement
-    .env
-        ENV=DEV
-        SECRET_KEY= [SECRETKEY]
-        DB_NAME=purbeurre
-        DB_USER=root
-        DB_PASSWORD=root
+
+*.env*
+
+    ENV=DEV
+    SECRET_KEY= [SECRETKEY]
+    DB_NAME=purbeurre
+    DB_USER=root
+    DB_PASSWORD=root
 
 Modification du fichier de configuration
 
@@ -114,7 +116,7 @@ Réalisation de 5 pages à partir du template pour correspondre au cahier des ch
 * Résultats / Mes aliments
 * Page Aliment
 * Mon Compte
-* Mention légales (génération sur le site [generer-mentions-legales.com](https://www.generer-mentions-legales.com/))
+* Mention légales
 
 Découpage avec une partie base et différents blocs.
 
@@ -145,7 +147,7 @@ Il y a également l'import des *ulrpattern* des application sont préfixées.
 
 * Utilisation de vue générique directement dans `urlpatterns` (*index*)
 
-## 4 - Authentification
+## 5 - Authentification
 
 Ce module permet d'adapter le module *User* intégré à Django pour l'utiliser avec l'adresse email à la place du *username*
 
@@ -205,7 +207,7 @@ Utilisation de la méthode `get` pour afficher la page et récupérer les inform
 
 ---
 
-## 5 - Products
+## 6 - Products
 
 Mise en place d'une commande personnalisée `django-admin` pour peupler la base de donnée
 
@@ -342,7 +344,7 @@ Ajout de la table User dans la partie *admin*
 
 ---
 
-## 6 - Mise en ligne
+## 7 - Mise en ligne
 
 ### Mise en production
 
