@@ -10,6 +10,9 @@ install:
   - 'pipenv sync'
   - pipenv install coveralls
 
+addons:
+  firefox: latest
+
 script:
 
   - python purbeurre/manage.py migrate
