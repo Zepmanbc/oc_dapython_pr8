@@ -5,3 +5,4 @@ htmlcov/*
 purbeurre/htmlcov/*
 */.pytest_cache/*
 .coverage
+geckodriver.log
