@@ -1,5 +1,6 @@
-dist: xenial
+dist: xenial # for mysql
 
+# For Selenium, need geckodriver
 env:
   - MOZ_HEADLESS=1
 
